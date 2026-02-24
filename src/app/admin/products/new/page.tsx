@@ -30,48 +30,48 @@ export default async function AdminNewProductPage({
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
-        <h2 className="text-2xl font-semibold text-slate-900">Create product</h2>
-        <Link href="/admin/products" className="text-sm font-medium text-slate-700 hover:text-slate-900">
+        <h2 className="rb-title text-3xl text-[#edf5dd]">Create product</h2>
+        <Link href="/admin/products" className="text-sm font-semibold uppercase tracking-[0.12em] text-[#b2c7aa] hover:text-[#e7f6d2]">
           Back to products
         </Link>
       </div>
 
       {errorMessage ? (
-        <p className="rounded-md border border-rose-200 bg-rose-50 px-3 py-2 text-sm text-rose-700">
+        <p className="rb-alert">
           {errorMessage}
         </p>
       ) : null}
 
       <form
         action={createProductAction}
-        className="space-y-4 rounded-xl border border-slate-200 bg-white p-6 shadow-sm"
+        className="rb-panel space-y-4 p-6"
       >
         <div className="grid gap-4 sm:grid-cols-2">
           <div>
-            <label className="mb-1 block text-sm font-medium text-slate-700" htmlFor="name">
+            <label className="rb-label" htmlFor="name">
               Product name
             </label>
             <input
               id="name"
               name="name"
               required
-              className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm"
+              className="rb-input"
             />
           </div>
           <div>
-            <label className="mb-1 block text-sm font-medium text-slate-700" htmlFor="slug">
+            <label className="rb-label" htmlFor="slug">
               Slug (optional)
             </label>
             <input
               id="slug"
               name="slug"
-              className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm"
+              className="rb-input"
             />
           </div>
         </div>
 
         <div>
-          <label className="mb-1 block text-sm font-medium text-slate-700" htmlFor="description">
+          <label className="rb-label" htmlFor="description">
             Description
           </label>
           <textarea
@@ -79,13 +79,13 @@ export default async function AdminNewProductPage({
             name="description"
             rows={5}
             required
-            className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm"
+            className="rb-textarea"
           />
         </div>
 
         <div className="grid gap-4 sm:grid-cols-3">
           <div>
-            <label className="mb-1 block text-sm font-medium text-slate-700" htmlFor="price">
+            <label className="rb-label" htmlFor="price">
               Price (USD)
             </label>
             <input
@@ -95,14 +95,11 @@ export default async function AdminNewProductPage({
               step="0.01"
               min="0.01"
               required
-              className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm"
+              className="rb-input"
             />
           </div>
           <div>
-            <label
-              className="mb-1 block text-sm font-medium text-slate-700"
-              htmlFor="compareAtPrice"
-            >
+            <label className="rb-label" htmlFor="compareAtPrice">
               Compare-at price
             </label>
             <input
@@ -111,11 +108,11 @@ export default async function AdminNewProductPage({
               type="number"
               step="0.01"
               min="0.01"
-              className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm"
+              className="rb-input"
             />
           </div>
           <div>
-            <label className="mb-1 block text-sm font-medium text-slate-700" htmlFor="inventory">
+            <label className="rb-label" htmlFor="inventory">
               Inventory
             </label>
             <input
@@ -124,31 +121,31 @@ export default async function AdminNewProductPage({
               type="number"
               min={0}
               required
-              className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm"
+              className="rb-input"
             />
           </div>
         </div>
 
         <div className="grid gap-4 sm:grid-cols-2">
           <div>
-            <label className="mb-1 block text-sm font-medium text-slate-700" htmlFor="sku">
+            <label className="rb-label" htmlFor="sku">
               SKU
             </label>
             <input
               id="sku"
               name="sku"
               required
-              className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm"
+              className="rb-input"
             />
           </div>
           <div>
-            <label className="mb-1 block text-sm font-medium text-slate-700" htmlFor="categoryId">
+            <label className="rb-label" htmlFor="categoryId">
               Category
             </label>
             <select
               id="categoryId"
               name="categoryId"
-              className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm"
+              className="rb-select"
             >
               <option value="">Uncategorized</option>
               {categories.map((category) => (
@@ -161,23 +158,23 @@ export default async function AdminNewProductPage({
         </div>
 
         <div>
-          <label className="mb-1 block text-sm font-medium text-slate-700" htmlFor="imageUrl">
+          <label className="rb-label" htmlFor="imageUrl">
             Image URL (optional)
           </label>
           <input
             id="imageUrl"
             name="imageUrl"
             type="url"
-            className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm"
+            className="rb-input"
             placeholder="https://..."
           />
-          <p className="mt-1 text-xs text-slate-500">
+          <p className="mt-1 text-xs text-[#8ea88b]">
             You can also upload an image file below. Uploaded file takes precedence.
           </p>
         </div>
 
         <div>
-          <label className="mb-1 block text-sm font-medium text-slate-700" htmlFor="image">
+          <label className="rb-label" htmlFor="image">
             Upload image (optional)
           </label>
           <input
@@ -185,20 +182,17 @@ export default async function AdminNewProductPage({
             name="image"
             type="file"
             accept="image/png,image/jpeg,image/webp,image/gif"
-            className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm"
+            className="rb-input"
           />
         </div>
 
-        <label className="inline-flex items-center gap-2 text-sm font-medium text-slate-700">
+        <label className="inline-flex items-center gap-2 text-sm font-medium text-[#b8cdb0]">
           <input type="checkbox" name="isPublished" className="size-4" />
           Publish product immediately
         </label>
 
         <div>
-          <button
-            type="submit"
-            className="rounded-md bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-700"
-          >
+          <button type="submit" className="rb-btn">
             Create product
           </button>
         </div>

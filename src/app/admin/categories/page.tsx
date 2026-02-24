@@ -32,10 +32,10 @@ export default async function AdminCategoriesPage({
 
   return (
     <div className="space-y-6">
-      <section className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
-        <h2 className="text-2xl font-semibold text-slate-900">Create category</h2>
+      <section className="rb-panel p-6">
+        <h2 className="rb-title text-3xl text-[#edf5dd]">Create category</h2>
         {errorMessage ? (
-          <p className="mt-3 rounded-md border border-rose-200 bg-rose-50 px-3 py-2 text-sm text-rose-700">
+          <p className="rb-alert mt-3">
             {errorMessage}
           </p>
         ) : null}
@@ -44,40 +44,34 @@ export default async function AdminCategoriesPage({
             name="name"
             placeholder="Name"
             required
-            className="rounded-md border border-slate-300 px-3 py-2 text-sm"
+            className="rb-input"
           />
           <input
             name="slug"
             placeholder="Slug (optional)"
-            className="rounded-md border border-slate-300 px-3 py-2 text-sm"
+            className="rb-input"
           />
-          <button
-            type="submit"
-            className="rounded-md bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-700"
-          >
+          <button type="submit" className="rb-btn">
             Add category
           </button>
           <textarea
             name="description"
             rows={2}
             placeholder="Description (optional)"
-            className="sm:col-span-3 rounded-md border border-slate-300 px-3 py-2 text-sm"
+            className="rb-textarea sm:col-span-3"
           />
         </form>
       </section>
 
       <section className="space-y-3">
-        <h2 className="text-2xl font-semibold text-slate-900">Existing categories</h2>
+        <h2 className="rb-title text-3xl text-[#edf5dd]">Existing categories</h2>
         {categories.length === 0 ? (
-          <p className="rounded-xl border border-slate-200 bg-white p-6 text-slate-600">
+          <p className="rb-panel p-6 text-[#a5bc9f]">
             No categories yet.
           </p>
         ) : (
           categories.map((category) => (
-            <article
-              key={category.id}
-              className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm"
-            >
+            <article key={category.id} className="rb-panel p-5">
               <div className="grid gap-3 sm:grid-cols-3">
                 <form action={updateCategoryAction} className="contents">
                   <input type="hidden" name="categoryId" value={category.id} />
@@ -85,18 +79,15 @@ export default async function AdminCategoriesPage({
                     name="name"
                     defaultValue={category.name}
                     required
-                    className="rounded-md border border-slate-300 px-3 py-2 text-sm"
+                    className="rb-input"
                   />
                   <input
                     name="slug"
                     defaultValue={category.slug}
-                    className="rounded-md border border-slate-300 px-3 py-2 text-sm"
+                    className="rb-input"
                   />
                   <div className="flex items-center gap-2">
-                    <button
-                      type="submit"
-                      className="rounded-md border border-slate-300 px-3 py-2 text-xs font-semibold text-slate-700 hover:border-slate-400"
-                    >
+                    <button type="submit" className="rb-btn-secondary !py-2 !text-[11px]">
                       Save
                     </button>
                   </div>
@@ -104,20 +95,17 @@ export default async function AdminCategoriesPage({
                     name="description"
                     rows={2}
                     defaultValue={category.description ?? ""}
-                    className="sm:col-span-3 rounded-md border border-slate-300 px-3 py-2 text-sm"
+                    className="rb-textarea sm:col-span-3"
                   />
                 </form>
               </div>
               <form action={deleteCategoryAction} className="mt-2">
                 <input type="hidden" name="categoryId" value={category.id} />
-                <button
-                  type="submit"
-                  className="rounded-md border border-rose-200 px-3 py-2 text-xs font-semibold text-rose-700 hover:bg-rose-50"
-                >
+                <button type="submit" className="rb-btn-danger !py-2 !text-[11px]">
                   Delete
                 </button>
               </form>
-              <p className="mt-2 text-xs text-slate-500">
+              <p className="mt-2 text-xs text-[#8ea88b]">
                 {category._count.products} products assigned
               </p>
             </article>

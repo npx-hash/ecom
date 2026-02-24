@@ -1,13 +1,22 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f8fafc;
-  --foreground: #0f172a;
+  --rb-bg: #08100a;
+  --rb-bg-soft: #101a12;
+  --rb-panel: rgba(14, 26, 18, 0.8);
+  --rb-panel-strong: rgba(10, 20, 14, 0.95);
+  --rb-border: rgba(174, 224, 114, 0.24);
+  --rb-border-strong: rgba(174, 224, 114, 0.45);
+  --rb-accent: #aee072;
+  --rb-accent-strong: #d0f199;
+  --rb-text: #f1f6e7;
+  --rb-muted: #9ab194;
+  --rb-danger: #ff7a81;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-background: var(--rb-bg);
+  --color-foreground: var(--rb-text);
 }
 
 * {
@@ -21,12 +30,289 @@ body {
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-sans), sans-serif;
+  background:
+    radial-gradient(circle at 10% 10%, rgba(174, 224, 114, 0.16) 0%, transparent 30%),
+    radial-gradient(circle at 90% 0%, rgba(86, 149, 62, 0.18) 0%, transparent 25%),
+    linear-gradient(160deg, #061009 0%, #08110a 40%, #0a140d 100%);
+  color: var(--rb-text);
+  font-family: var(--font-body), sans-serif;
+  letter-spacing: 0.01em;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.03) 0.6px, transparent 0.6px);
+  background-size: 2px 2px;
+  opacity: 0.32;
+  z-index: -1;
 }
 
 a {
   color: inherit;
   text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+.rb-display {
+  font-family: var(--font-display), serif;
+  letter-spacing: 0.02em;
+}
+
+::selection {
+  color: #071109;
+  background: var(--rb-accent);
+}
+
+.rb-shell {
+  min-height: 100vh;
+}
+
+.rb-page-frame {
+  position: relative;
+}
+
+.rb-panel {
+  border: 1px solid var(--rb-border);
+  background: linear-gradient(
+    160deg,
+    rgba(19, 33, 23, 0.95) 0%,
+    rgba(10, 20, 14, 0.92) 65%,
+    rgba(9, 16, 11, 0.92) 100%
+  );
+  border-radius: 1.25rem;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.02) inset,
+    0 22px 40px rgba(0, 0, 0, 0.28);
+}
+
+.rb-panel-soft {
+  border: 1px solid rgba(174, 224, 114, 0.16);
+  background: linear-gradient(
+    140deg,
+    rgba(24, 40, 28, 0.82) 0%,
+    rgba(11, 19, 13, 0.75) 100%
+  );
+  border-radius: 1rem;
+}
+
+.rb-title {
+  color: var(--rb-text);
+}
+
+.rb-muted {
+  color: var(--rb-muted);
+}
+
+.rb-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  border-radius: 999px;
+  border: 1px solid rgba(174, 224, 114, 0.36);
+  background: rgba(174, 224, 114, 0.13);
+  padding: 0.35rem 0.75rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--rb-accent-strong);
+}
+
+.rb-btn {
+  border-radius: 0.7rem;
+  border: 1px solid var(--rb-border-strong);
+  background: linear-gradient(145deg, #aee072 0%, #8fc95b 100%);
+  color: #0a140d;
+  padding: 0.58rem 1rem;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: transform 150ms ease, box-shadow 150ms ease, filter 150ms ease;
+}
+
+.rb-btn:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.03);
+  box-shadow: 0 10px 24px rgba(140, 195, 89, 0.28);
+}
+
+.rb-btn-secondary {
+  border-radius: 0.7rem;
+  border: 1px solid var(--rb-border);
+  background: rgba(12, 21, 14, 0.84);
+  color: var(--rb-text);
+  padding: 0.58rem 1rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: border-color 150ms ease, transform 150ms ease;
+}
+
+.rb-btn-secondary:hover {
+  transform: translateY(-1px);
+  border-color: var(--rb-border-strong);
+}
+
+.rb-btn-danger {
+  border-radius: 0.7rem;
+  border: 1px solid rgba(255, 122, 129, 0.45);
+  background: rgba(255, 122, 129, 0.13);
+  color: #ffc8cb;
+  padding: 0.5rem 0.9rem;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.rb-input,
+.rb-select,
+.rb-textarea {
+  width: 100%;
+  border-radius: 0.7rem;
+  border: 1px solid rgba(174, 224, 114, 0.25);
+  background: rgba(8, 16, 10, 0.72);
+  color: var(--rb-text);
+  padding: 0.58rem 0.75rem;
+  font-size: 0.88rem;
+  outline: none;
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+
+.rb-input::placeholder,
+.rb-textarea::placeholder {
+  color: rgba(154, 177, 148, 0.85);
+}
+
+.rb-input:focus,
+.rb-select:focus,
+.rb-textarea:focus {
+  border-color: var(--rb-border-strong);
+  box-shadow: 0 0 0 3px rgba(174, 224, 114, 0.12);
+}
+
+.rb-label {
+  margin-bottom: 0.35rem;
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--rb-muted);
+}
+
+.rb-badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  border: 1px solid rgba(174, 224, 114, 0.26);
+  background: rgba(174, 224, 114, 0.08);
+  padding: 0.22rem 0.56rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--rb-accent-strong);
+}
+
+.rb-table-wrap {
+  overflow-x: auto;
+  border-radius: 1rem;
+  border: 1px solid rgba(174, 224, 114, 0.18);
+  background: rgba(10, 18, 13, 0.88);
+}
+
+.rb-table {
+  min-width: 100%;
+  border-collapse: collapse;
+}
+
+.rb-table thead tr {
+  border-bottom: 1px solid rgba(174, 224, 114, 0.2);
+  background: rgba(27, 42, 28, 0.45);
+  text-align: left;
+}
+
+.rb-table th {
+  padding: 0.78rem 0.85rem;
+  font-size: 0.67rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #b7c9a5;
+}
+
+.rb-table td {
+  border-top: 1px solid rgba(174, 224, 114, 0.1);
+  padding: 0.8rem 0.85rem;
+  color: var(--rb-text);
+  font-size: 0.82rem;
+}
+
+.rb-alert {
+  border-radius: 0.75rem;
+  border: 1px solid rgba(255, 122, 129, 0.36);
+  background: rgba(255, 122, 129, 0.11);
+  padding: 0.55rem 0.75rem;
+  color: #ffcad0;
+  font-size: 0.82rem;
+}
+
+.rb-alert-success {
+  border-radius: 0.75rem;
+  border: 1px solid rgba(174, 224, 114, 0.38);
+  background: rgba(174, 224, 114, 0.12);
+  padding: 0.55rem 0.75rem;
+  color: #daf4b4;
+  font-size: 0.82rem;
+}
+
+@keyframes rb-rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes rb-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.rb-fade-up {
+  animation: rb-rise 620ms ease both;
+}
+
+.rb-delay-1 {
+  animation-delay: 70ms;
+}
+
+.rb-delay-2 {
+  animation-delay: 130ms;
+}
+
+.rb-delay-3 {
+  animation-delay: 180ms;
+}
+
+.rb-float {
+  animation: rb-float 5.8s ease-in-out infinite;
 }

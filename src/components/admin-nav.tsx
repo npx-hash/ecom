@@ -15,7 +15,7 @@ export function AdminNav() {
         <Link
           key={link.href}
           href={link.href}
-          className="rounded-md border border-slate-200 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:border-slate-300 hover:text-slate-900"
+          className="rb-btn-secondary !py-1.5 !text-[11px]"
         >
           {link.label}
         </Link>

@@ -77,7 +77,7 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
             type="text"
             name="q"
             defaultValue={query ?? ""}
-            placeholder="Search products"
+            placeholder="Search strains, vapes, or edibles"
             className="rb-input"
           />
           <select
@@ -85,7 +85,7 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
             defaultValue={activeCategory ?? ""}
             className="rb-select"
           >
-            <option value="">All categories</option>
+            <option value="">All cannabis categories</option>
             {categories.map((category) => (
               <option key={category.id} value={category.slug}>
                 {category.name}

@@ -42,13 +42,13 @@ export default async function AdminCategoriesPage({
         <form action={createCategoryAction} className="mt-4 grid gap-3 sm:grid-cols-3">
           <input
             name="name"
-            placeholder="Name"
+            placeholder="Example: Indoor Flower"
             required
             className="rb-input"
           />
           <input
             name="slug"
-            placeholder="Slug (optional)"
+            placeholder="indoor-flower (optional)"
             className="rb-input"
           />
           <button type="submit" className="rb-btn">
@@ -57,7 +57,7 @@ export default async function AdminCategoriesPage({
           <textarea
             name="description"
             rows={2}
-            placeholder="Description (optional)"
+            placeholder="Premium whole flower eighths, quarters, and halves."
             className="rb-textarea sm:col-span-3"
           />
         </form>

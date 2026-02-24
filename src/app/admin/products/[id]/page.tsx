@@ -197,7 +197,7 @@ export default async function AdminEditProductPage({
             type="url"
             defaultValue={product.imageUrl ?? ""}
             className="rb-input"
-            placeholder="https://..."
+            placeholder="https://cdn.reaperbotany.com/products/night-bloom.jpg"
           />
         </div>
 

@@ -33,14 +33,14 @@ export default async function CheckoutPage({ searchParams }: CheckoutPageProps) 
 
   return (
     <div className="grid gap-6 lg:grid-cols-[1.8fr_1fr]">
-      <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-        <h1 className="text-3xl font-bold text-slate-900">Checkout</h1>
-        <p className="mt-2 text-sm text-slate-600">
+      <section className="rb-panel p-6">
+        <h1 className="rb-title text-4xl text-[#edf5dd]">Checkout</h1>
+        <p className="mt-2 text-sm text-[#a7bc9f]">
           Place your order and we will track fulfillment from the admin dashboard.
         </p>
 
         {errorMessage ? (
-          <p className="mt-4 rounded-md border border-rose-200 bg-rose-50 px-3 py-2 text-sm text-rose-700">
+          <p className="rb-alert mt-4">
             {errorMessage}
           </p>
         ) : null}
@@ -48,7 +48,7 @@ export default async function CheckoutPage({ searchParams }: CheckoutPageProps) 
         <form action={checkoutAction} className="mt-6 grid gap-4">
           <div className="grid gap-4 sm:grid-cols-2">
             <div>
-              <label className="mb-1 block text-sm font-medium text-slate-700" htmlFor="shippingName">
+              <label className="rb-label" htmlFor="shippingName">
                 Full name
               </label>
               <input
@@ -56,11 +56,11 @@ export default async function CheckoutPage({ searchParams }: CheckoutPageProps) 
                 name="shippingName"
                 required
                 defaultValue={user.name}
-                className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm outline-none ring-sky-300 focus:ring"
+                className="rb-input"
               />
             </div>
             <div>
-              <label className="mb-1 block text-sm font-medium text-slate-700" htmlFor="shippingEmail">
+              <label className="rb-label" htmlFor="shippingEmail">
                 Email
               </label>
               <input
@@ -69,24 +69,24 @@ export default async function CheckoutPage({ searchParams }: CheckoutPageProps) 
                 type="email"
                 required
                 defaultValue={user.email}
-                className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm outline-none ring-sky-300 focus:ring"
+                className="rb-input"
               />
             </div>
           </div>
 
           <div className="grid gap-4 sm:grid-cols-2">
             <div>
-              <label className="mb-1 block text-sm font-medium text-slate-700" htmlFor="shippingPhone">
+              <label className="rb-label" htmlFor="shippingPhone">
                 Phone (optional)
               </label>
               <input
                 id="shippingPhone"
                 name="shippingPhone"
-                className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm outline-none ring-sky-300 focus:ring"
+                className="rb-input"
               />
             </div>
             <div>
-              <label className="mb-1 block text-sm font-medium text-slate-700" htmlFor="shippingCountry">
+              <label className="rb-label" htmlFor="shippingCountry">
                 Country
               </label>
               <input
@@ -94,116 +94,113 @@ export default async function CheckoutPage({ searchParams }: CheckoutPageProps) 
                 name="shippingCountry"
                 required
                 defaultValue="United States"
-                className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm outline-none ring-sky-300 focus:ring"
+                className="rb-input"
               />
             </div>
           </div>
 
           <div>
-            <label className="mb-1 block text-sm font-medium text-slate-700" htmlFor="shippingAddress1">
+            <label className="rb-label" htmlFor="shippingAddress1">
               Address line 1
             </label>
             <input
               id="shippingAddress1"
               name="shippingAddress1"
               required
-              className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm outline-none ring-sky-300 focus:ring"
+              className="rb-input"
             />
           </div>
 
           <div>
-            <label className="mb-1 block text-sm font-medium text-slate-700" htmlFor="shippingAddress2">
+            <label className="rb-label" htmlFor="shippingAddress2">
               Address line 2 (optional)
             </label>
             <input
               id="shippingAddress2"
               name="shippingAddress2"
-              className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm outline-none ring-sky-300 focus:ring"
+              className="rb-input"
             />
           </div>
 
           <div className="grid gap-4 sm:grid-cols-3">
             <div>
-              <label className="mb-1 block text-sm font-medium text-slate-700" htmlFor="shippingCity">
+              <label className="rb-label" htmlFor="shippingCity">
                 City
               </label>
               <input
                 id="shippingCity"
                 name="shippingCity"
                 required
-                className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm outline-none ring-sky-300 focus:ring"
+                className="rb-input"
               />
             </div>
             <div>
-              <label className="mb-1 block text-sm font-medium text-slate-700" htmlFor="shippingState">
+              <label className="rb-label" htmlFor="shippingState">
                 State / Province
               </label>
               <input
                 id="shippingState"
                 name="shippingState"
                 required
-                className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm outline-none ring-sky-300 focus:ring"
+                className="rb-input"
               />
             </div>
             <div>
-              <label
-                className="mb-1 block text-sm font-medium text-slate-700"
-                htmlFor="shippingPostalCode"
-              >
+              <label className="rb-label" htmlFor="shippingPostalCode">
                 Postal code
               </label>
               <input
                 id="shippingPostalCode"
                 name="shippingPostalCode"
                 required
-                className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm outline-none ring-sky-300 focus:ring"
+                className="rb-input"
               />
             </div>
           </div>
 
           <div>
-            <label className="mb-1 block text-sm font-medium text-slate-700" htmlFor="notes">
+            <label className="rb-label" htmlFor="notes">
               Order notes (optional)
             </label>
             <textarea
               id="notes"
               name="notes"
               rows={3}
-              className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm outline-none ring-sky-300 focus:ring"
+              className="rb-textarea"
             />
           </div>
 
-          <button
-            type="submit"
-            className="mt-2 rounded-md bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-700"
-          >
+          <button type="submit" className="rb-btn mt-2">
             Place order
           </button>
         </form>
       </section>
 
-      <aside className="h-fit rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-        <h2 className="text-lg font-semibold text-slate-900">Order summary</h2>
+      <aside className="rb-panel h-fit p-5">
+        <h2 className="rb-title text-2xl text-[#edf5dd]">Order summary</h2>
         <ul className="mt-4 space-y-2">
           {cartItems.map((item) => (
             <li key={item.id} className="flex items-start justify-between gap-3 text-sm">
               <div>
-                <p className="font-medium text-slate-800">{item.product.name}</p>
-                <p className="text-slate-500">Qty {item.quantity}</p>
+                <p className="font-medium text-[#e7f3da]">{item.product.name}</p>
+                <p className="text-[#8ea88b]">Qty {item.quantity}</p>
               </div>
-              <p className="font-semibold text-slate-800">
+              <p className="font-semibold text-[#daf4b4]">
                 {formatPrice(item.quantity * item.product.priceCents)}
               </p>
             </li>
           ))}
         </ul>
-        <div className="mt-4 border-t border-slate-200 pt-4">
+        <div className="mt-4 border-t border-[rgba(174,224,114,0.2)] pt-4">
           <div className="flex items-center justify-between text-sm">
-            <span className="text-slate-600">Subtotal</span>
-            <span className="font-semibold text-slate-900">{formatPrice(subtotal)}</span>
+            <span className="text-[#a6bc9f]">Subtotal</span>
+            <span className="font-semibold text-[#daf4b4]">{formatPrice(subtotal)}</span>
           </div>
         </div>
-        <Link href="/cart" className="mt-4 inline-block text-sm font-medium text-slate-700 hover:text-slate-900">
+        <Link
+          href="/cart"
+          className="mt-4 inline-block text-sm font-semibold uppercase tracking-[0.12em] text-[#b2c7aa] hover:text-[#e7f6d2]"
+        >
           Back to cart
         </Link>
       </aside>

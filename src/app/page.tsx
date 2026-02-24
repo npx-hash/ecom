@@ -26,56 +26,51 @@ export default async function HomePage() {
 
   return (
     <div className="space-y-12">
-      <section className="grid gap-6 rounded-3xl border border-slate-200 bg-white p-8 shadow-sm md:grid-cols-[2fr_1fr]">
+      <section className="rb-panel rb-fade-up grid gap-8 overflow-hidden p-8 md:grid-cols-[1.65fr_1fr]">
         <div className="space-y-5">
-          <p className="inline-block rounded-full bg-sky-100 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-sky-700">
-            Full stack ecommerce platform
-          </p>
-          <h1 className="text-4xl font-bold leading-tight text-slate-900 md:text-5xl">
-            Launch and scale your store with customer and admin experiences in one app.
+          <p className="rb-chip">Reaper Botany | Licensed Dispensary</p>
+          <h1 className="rb-title text-4xl leading-tight md:text-6xl">
+            Deep-cut flower.
+            <br />
+            Clean concentrates.
+            <br />
+            Brand-first cannabis commerce.
           </h1>
-          <p className="max-w-2xl text-lg text-slate-600">
-            This build ships user auth, product catalog, cart and checkout, and a role-based admin dashboard to manage products, categories, orders, and users.
+          <p className="max-w-2xl text-base text-[#a3b99f] md:text-lg">
+            Reaper Botany is your direct-to-consumer storefront for premium drops, curated bundles,
+            and reliable local fulfillment. Built to feel like a real lifestyle brand, not a generic
+            marketplace.
           </p>
-          <div className="flex flex-wrap gap-3">
-            <Link
-              href="/products"
-              className="rounded-md bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white hover:bg-slate-700"
-            >
-              Start Shopping
+          <div className="flex flex-wrap gap-3 pt-2">
+            <Link href="/products" className="rb-btn">
+              Shop Strains
             </Link>
-            <Link
-              href="/admin"
-              className="rounded-md border border-slate-300 bg-white px-5 py-2.5 text-sm font-semibold text-slate-700 hover:border-slate-400"
-            >
-              Admin Dashboard
+            <Link href="/admin" className="rb-btn-secondary">
+              Admin Control Room
             </Link>
           </div>
         </div>
-        <div className="rounded-2xl bg-gradient-to-br from-sky-500 to-cyan-400 p-6 text-white">
-          <p className="text-sm font-medium uppercase tracking-wide text-sky-100">
-            Included
-          </p>
-          <ul className="mt-4 space-y-3 text-sm">
-            <li>Account registration and secure login</li>
-            <li>Published product catalog and detail pages</li>
-            <li>Persistent cart and transactional checkout</li>
-            <li>Order status lifecycle managed by admins</li>
-            <li>Image URL or direct image upload for products</li>
-            <li>Role-based user administration</li>
+        <div className="rb-panel-soft rb-fade-up rb-delay-1 p-5">
+          <p className="text-xs uppercase tracking-[0.16em] text-[#b3c8ab]">Brand Promise</p>
+          <ul className="mt-3 space-y-2.5 text-sm text-[#d9ebcf]">
+            <li>Single-brand dispensary experience from browse to delivery.</li>
+            <li>Live inventory with curated product presentation.</li>
+            <li>Member accounts with order tracking and reorder history.</li>
+            <li>Admin control over catalog, imagery, pricing, and statuses.</li>
+            <li>Designed for scaling into loyalty, drops, and subscriptions.</li>
           </ul>
         </div>
       </section>
 
       <section className="space-y-4">
         <div className="flex items-center justify-between gap-4">
-          <h2 className="text-2xl font-semibold text-slate-900">Featured products</h2>
-          <Link href="/products" className="text-sm font-medium text-slate-700 hover:text-slate-900">
+          <h2 className="rb-title text-3xl text-[#edf5dd]">Featured Drops</h2>
+          <Link href="/products" className="text-sm font-semibold uppercase tracking-[0.12em] text-[#b2c7aa] hover:text-[#e7f6d2]">
             View all
           </Link>
         </div>
         {featuredProducts.length === 0 ? (
-          <p className="rounded-xl border border-slate-200 bg-white p-6 text-slate-600">
+          <p className="rb-panel p-6 text-[#a5bc9f]">
             No products are published yet.
           </p>
         ) : (
@@ -88,17 +83,18 @@ export default async function HomePage() {
       </section>
 
       <section className="space-y-4">
-        <h2 className="text-2xl font-semibold text-slate-900">Shop by category</h2>
+        <h2 className="rb-title text-3xl text-[#edf5dd]">Explore by Collection</h2>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {latestCategories.map((category) => (
             <Link
               key={category.id}
               href={`/products?category=${category.slug}`}
-              className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-slate-300"
+              className="rb-panel-soft rb-fade-up rb-delay-2 p-5 transition hover:-translate-y-0.5 hover:border-[rgba(174,224,114,0.38)]"
             >
-              <h3 className="text-lg font-semibold text-slate-900">{category.name}</h3>
-              <p className="mt-2 text-sm text-slate-600">
-                {category.description ?? "Explore this category"}
+              <p className="text-xs uppercase tracking-[0.16em] text-[#8ea88b]">Collection</p>
+              <h3 className="mt-2 text-2xl font-semibold text-[#edf5dd]">{category.name}</h3>
+              <p className="mt-2 text-sm text-[#a7bc9f]">
+                {category.description ?? "Explore this collection"}
               </p>
             </Link>
           ))}

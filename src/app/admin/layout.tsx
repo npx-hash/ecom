@@ -10,9 +10,10 @@ export default async function AdminLayout({
 
   return (
     <div className="space-y-6">
-      <header className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-        <h1 className="text-3xl font-bold text-slate-900">Admin dashboard</h1>
-        <p className="mt-2 text-sm text-slate-600">
+      <header className="rb-panel p-6">
+        <p className="rb-chip">Control Room</p>
+        <h1 className="rb-title mt-4 text-4xl text-[#edf5dd]">Admin dashboard</h1>
+        <p className="mt-2 text-sm text-[#a7bc9f]">
           Manage catalog, inventory, users, orders, and publishing state.
         </p>
         <div className="mt-4">

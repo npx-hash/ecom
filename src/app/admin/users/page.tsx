@@ -27,16 +27,16 @@ export default async function AdminUsersPage({ searchParams }: AdminUsersPagePro
 
   return (
     <div className="space-y-4">
-      <h2 className="text-2xl font-semibold text-slate-900">Users</h2>
+      <h2 className="rb-title text-3xl text-[#edf5dd]">Users</h2>
       {errorMessage ? (
-        <p className="rounded-md border border-rose-200 bg-rose-50 px-3 py-2 text-sm text-rose-700">
+        <p className="rb-alert">
           {errorMessage}
         </p>
       ) : null}
 
-      <div className="overflow-x-auto rounded-xl border border-slate-200 bg-white shadow-sm">
-        <table className="min-w-full divide-y divide-slate-200 text-sm">
-          <thead className="bg-slate-50 text-left text-xs uppercase tracking-wide text-slate-500">
+      <div className="rb-table-wrap">
+        <table className="rb-table">
+          <thead>
             <tr>
               <th className="px-4 py-3">Name</th>
               <th className="px-4 py-3">Email</th>
@@ -45,18 +45,18 @@ export default async function AdminUsersPage({ searchParams }: AdminUsersPagePro
               <th className="px-4 py-3 text-right">Action</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-slate-100">
+          <tbody>
             {users.map((user) => (
               <tr key={user.id}>
-                <td className="px-4 py-3 font-medium text-slate-900">{user.name}</td>
-                <td className="px-4 py-3 text-slate-700">{user.email}</td>
-                <td className="px-4 py-3 text-slate-600">{formatDateTime(user.createdAt)}</td>
+                <td className="px-4 py-3 font-medium text-[#edf5dd]">{user.name}</td>
+                <td className="px-4 py-3 text-[#c0d1b8]">{user.email}</td>
+                <td className="px-4 py-3 text-[#96ac91]">{formatDateTime(user.createdAt)}</td>
                 <td className="px-4 py-3">
                   <span
-                    className={`rounded-full px-2 py-1 text-xs font-semibold ${
+                    className={`rb-badge ${
                       user.role === "ADMIN"
-                        ? "bg-sky-100 text-sky-700"
-                        : "bg-slate-100 text-slate-700"
+                        ? "!border-[rgba(130,193,255,0.45)] !bg-[rgba(130,193,255,0.13)] !text-[#c7e8ff]"
+                        : ""
                     }`}
                   >
                     {user.role}
@@ -68,15 +68,12 @@ export default async function AdminUsersPage({ searchParams }: AdminUsersPagePro
                     <select
                       name="role"
                       defaultValue={user.role}
-                      className="rounded-md border border-slate-300 px-2 py-1.5 text-xs font-semibold"
+                      className="rb-select !w-auto !py-1.5 !text-xs"
                     >
                       <option value="USER">USER</option>
                       <option value="ADMIN">ADMIN</option>
                     </select>
-                    <button
-                      type="submit"
-                      className="rounded-md border border-slate-300 px-3 py-1.5 text-xs font-semibold text-slate-700 hover:border-slate-400"
-                    >
+                    <button type="submit" className="rb-btn-secondary !py-1.5 !text-[10px]">
                       Save
                     </button>
                   </form>

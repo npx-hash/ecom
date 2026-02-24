@@ -38,35 +38,35 @@ export default async function AdminEditProductPage({
   return (
     <div className="space-y-4">
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <h2 className="text-2xl font-semibold text-slate-900">Edit product</h2>
-        <Link href="/admin/products" className="text-sm font-medium text-slate-700 hover:text-slate-900">
+        <h2 className="rb-title text-3xl text-[#edf5dd]">Edit product</h2>
+        <Link href="/admin/products" className="text-sm font-semibold uppercase tracking-[0.12em] text-[#b2c7aa] hover:text-[#e7f6d2]">
           Back to products
         </Link>
       </div>
 
       {errorMessage ? (
-        <p className="rounded-md border border-rose-200 bg-rose-50 px-3 py-2 text-sm text-rose-700">
+        <p className="rb-alert">
           {errorMessage}
         </p>
       ) : null}
 
       <form
         action={updateProductAction}
-        className="space-y-4 rounded-xl border border-slate-200 bg-white p-6 shadow-sm"
+        className="rb-panel space-y-4 p-6"
       >
         <input type="hidden" name="productId" value={product.id} />
         <input type="hidden" name="existingImageUrl" value={product.imageUrl ?? ""} />
 
-        <div className="rounded-md border border-slate-200 bg-slate-50 p-3 text-sm text-slate-700">
+        <div className="rb-panel-soft p-3 text-sm text-[#a7bc9f]">
           Created {formatDateTime(product.createdAt)} | Last updated {formatDateTime(product.updatedAt)}
           <br />
-          Current price: {formatPrice(product.priceCents)} | SKU:{" "}
-          <span className="font-mono">{product.sku}</span>
+          Current price: <span className="text-[#daf4b4]">{formatPrice(product.priceCents)}</span> | SKU:{" "}
+          <span className="font-mono text-[#d5e7c7]">{product.sku}</span>
         </div>
 
         <div className="grid gap-4 sm:grid-cols-2">
           <div>
-            <label className="mb-1 block text-sm font-medium text-slate-700" htmlFor="name">
+            <label className="rb-label" htmlFor="name">
               Product name
             </label>
             <input
@@ -74,24 +74,24 @@ export default async function AdminEditProductPage({
               name="name"
               required
               defaultValue={product.name}
-              className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm"
+              className="rb-input"
             />
           </div>
           <div>
-            <label className="mb-1 block text-sm font-medium text-slate-700" htmlFor="slug">
+            <label className="rb-label" htmlFor="slug">
               Slug
             </label>
             <input
               id="slug"
               name="slug"
               defaultValue={product.slug}
-              className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm"
+              className="rb-input"
             />
           </div>
         </div>
 
         <div>
-          <label className="mb-1 block text-sm font-medium text-slate-700" htmlFor="description">
+          <label className="rb-label" htmlFor="description">
             Description
           </label>
           <textarea
@@ -100,13 +100,13 @@ export default async function AdminEditProductPage({
             rows={6}
             required
             defaultValue={product.description}
-            className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm"
+            className="rb-textarea"
           />
         </div>
 
         <div className="grid gap-4 sm:grid-cols-3">
           <div>
-            <label className="mb-1 block text-sm font-medium text-slate-700" htmlFor="price">
+            <label className="rb-label" htmlFor="price">
               Price (USD)
             </label>
             <input
@@ -117,14 +117,11 @@ export default async function AdminEditProductPage({
               min="0.01"
               required
               defaultValue={(product.priceCents / 100).toFixed(2)}
-              className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm"
+              className="rb-input"
             />
           </div>
           <div>
-            <label
-              className="mb-1 block text-sm font-medium text-slate-700"
-              htmlFor="compareAtPrice"
-            >
+            <label className="rb-label" htmlFor="compareAtPrice">
               Compare-at price
             </label>
             <input
@@ -138,11 +135,11 @@ export default async function AdminEditProductPage({
                   ? (product.compareAtPriceCents / 100).toFixed(2)
                   : ""
               }
-              className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm"
+              className="rb-input"
             />
           </div>
           <div>
-            <label className="mb-1 block text-sm font-medium text-slate-700" htmlFor="inventory">
+            <label className="rb-label" htmlFor="inventory">
               Inventory
             </label>
             <input
@@ -152,14 +149,14 @@ export default async function AdminEditProductPage({
               min={0}
               required
               defaultValue={product.inventory}
-              className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm"
+              className="rb-input"
             />
           </div>
         </div>
 
         <div className="grid gap-4 sm:grid-cols-2">
           <div>
-            <label className="mb-1 block text-sm font-medium text-slate-700" htmlFor="sku">
+            <label className="rb-label" htmlFor="sku">
               SKU
             </label>
             <input
@@ -167,18 +164,18 @@ export default async function AdminEditProductPage({
               name="sku"
               required
               defaultValue={product.sku}
-              className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm"
+              className="rb-input"
             />
           </div>
           <div>
-            <label className="mb-1 block text-sm font-medium text-slate-700" htmlFor="categoryId">
+            <label className="rb-label" htmlFor="categoryId">
               Category
             </label>
             <select
               id="categoryId"
               name="categoryId"
               defaultValue={product.categoryId ?? ""}
-              className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm"
+              className="rb-select"
             >
               <option value="">Uncategorized</option>
               {categories.map((category) => (
@@ -191,7 +188,7 @@ export default async function AdminEditProductPage({
         </div>
 
         <div>
-          <label className="mb-1 block text-sm font-medium text-slate-700" htmlFor="imageUrl">
+          <label className="rb-label" htmlFor="imageUrl">
             Image URL
           </label>
           <input
@@ -199,13 +196,13 @@ export default async function AdminEditProductPage({
             name="imageUrl"
             type="url"
             defaultValue={product.imageUrl ?? ""}
-            className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm"
+            className="rb-input"
             placeholder="https://..."
           />
         </div>
 
         <div>
-          <label className="mb-1 block text-sm font-medium text-slate-700" htmlFor="image">
+          <label className="rb-label" htmlFor="image">
             Upload replacement image
           </label>
           <input
@@ -213,11 +210,11 @@ export default async function AdminEditProductPage({
             name="image"
             type="file"
             accept="image/png,image/jpeg,image/webp,image/gif"
-            className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm"
+            className="rb-input"
           />
         </div>
 
-        <label className="inline-flex items-center gap-2 text-sm font-medium text-slate-700">
+        <label className="inline-flex items-center gap-2 text-sm font-medium text-[#b8cdb0]">
           <input
             type="checkbox"
             name="isPublished"
@@ -228,10 +225,7 @@ export default async function AdminEditProductPage({
         </label>
 
         <div>
-          <button
-            type="submit"
-            className="rounded-md bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-700"
-          >
+          <button type="submit" className="rb-btn">
             Save changes
           </button>
         </div>

@@ -60,13 +60,14 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
 
   return (
     <div className="space-y-8">
-      <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-        <h1 className="text-3xl font-bold text-slate-900">Catalog</h1>
-        <p className="mt-2 text-sm text-slate-600">
-          Browse all published products. Filter by category or search by keyword.
+      <section className="rb-panel rb-fade-up p-6">
+        <p className="rb-chip">Dispensary Catalog</p>
+        <h1 className="rb-title mt-4 text-4xl text-[#edf5dd]">Shop Reaper Botany</h1>
+        <p className="mt-2 text-sm text-[#a7bc9f]">
+          Browse live products, filter by collection, and search by strain, SKU, or descriptor.
         </p>
         {errorMessage ? (
-          <p className="mt-4 rounded-md border border-rose-200 bg-rose-50 px-3 py-2 text-sm text-rose-700">
+          <p className="rb-alert mt-4">
             {errorMessage}
           </p>
         ) : null}
@@ -77,12 +78,12 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
             name="q"
             defaultValue={query ?? ""}
             placeholder="Search products"
-            className="rounded-md border border-slate-300 px-3 py-2 text-sm outline-none ring-sky-300 focus:ring"
+            className="rb-input"
           />
           <select
             name="category"
             defaultValue={activeCategory ?? ""}
-            className="rounded-md border border-slate-300 px-3 py-2 text-sm outline-none ring-sky-300 focus:ring"
+            className="rb-select"
           >
             <option value="">All categories</option>
             {categories.map((category) => (
@@ -93,7 +94,7 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
           </select>
           <button
             type="submit"
-            className="rounded-md bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-700"
+            className="rb-btn"
           >
             Apply
           </button>
@@ -101,7 +102,10 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
 
         {(activeCategory || query) && (
           <div className="mt-4">
-            <Link href="/products" className="text-sm font-medium text-slate-700 hover:text-slate-900">
+            <Link
+              href="/products"
+              className="text-sm font-semibold uppercase tracking-[0.12em] text-[#b2c7aa] hover:text-[#e7f6d2]"
+            >
               Clear filters
             </Link>
           </div>
@@ -109,7 +113,7 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
       </section>
 
       {products.length === 0 ? (
-        <div className="rounded-2xl border border-slate-200 bg-white p-8 text-center text-slate-600">
+        <div className="rb-panel p-8 text-center text-[#a5bc9f]">
           No products match this filter.
         </div>
       ) : (

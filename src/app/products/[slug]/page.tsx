@@ -41,8 +41,8 @@ export default async function ProductDetailPage({
   }
 
   return (
-    <div className="grid gap-6 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm md:grid-cols-2">
-      <div className="overflow-hidden rounded-xl border border-slate-200">
+    <div className="rb-panel rb-fade-up grid gap-6 p-6 md:grid-cols-2">
+      <div className="overflow-hidden rounded-xl border border-[rgba(174,224,114,0.18)] bg-[#0d1710]">
         {product.imageUrl ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img
@@ -51,48 +51,51 @@ export default async function ProductDetailPage({
             className="h-full w-full object-cover"
           />
         ) : (
-          <div className="h-[420px] w-full bg-gradient-to-tr from-slate-200 to-slate-100" />
+          <div className="h-[420px] w-full bg-gradient-to-tr from-[#1a2a1c] to-[#0d1710]" />
         )}
       </div>
 
       <div className="space-y-5">
         <div>
-          <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
+          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#9ab194]">
             {product.category?.name ?? "Uncategorized"}
           </p>
-          <h1 className="mt-1 text-3xl font-bold text-slate-900">{product.name}</h1>
+          <h1 className="rb-title mt-1 text-4xl text-[#edf5dd]">{product.name}</h1>
         </div>
 
         <div className="flex items-end gap-3">
-          <p className="text-3xl font-bold text-slate-900">{formatPrice(product.priceCents)}</p>
+          <p className="text-3xl font-bold text-[#daf4b4]">{formatPrice(product.priceCents)}</p>
           {product.compareAtPriceCents ? (
-            <p className="text-lg text-slate-500 line-through">
+            <p className="text-lg text-[#7f927c] line-through">
               {formatPrice(product.compareAtPriceCents)}
             </p>
           ) : null}
         </div>
 
-        <p className="whitespace-pre-wrap text-sm leading-7 text-slate-600">
+        <p className="whitespace-pre-wrap text-sm leading-7 text-[#a5bc9f]">
           {product.description}
         </p>
 
-        <p className="text-sm font-medium text-slate-700">
-          SKU: <span className="font-mono">{product.sku}</span>
+        <p className="text-sm font-medium text-[#b8cdb0]">
+          SKU: <span className="font-mono text-[#d5e7c7]">{product.sku}</span>
         </p>
-        <p className="text-sm font-medium text-slate-700">
+        <p className="text-sm font-medium text-[#b8cdb0]">
           {product.inventory > 0 ? `${product.inventory} in stock` : "Out of stock"}
         </p>
 
         {errorMessage ? (
-          <p className="rounded-md border border-rose-200 bg-rose-50 px-3 py-2 text-sm text-rose-700">
+          <p className="rb-alert">
             {errorMessage}
           </p>
         ) : null}
 
         {product.inventory > 0 ? (
-          <form action={addToCartAction} className="space-y-3 rounded-xl border border-slate-200 p-4">
+          <form
+            action={addToCartAction}
+            className="rb-panel-soft space-y-3 rounded-xl border p-4"
+          >
             <input type="hidden" name="productId" value={product.id} />
-            <label className="block text-sm font-medium text-slate-700" htmlFor="quantity">
+            <label className="rb-label" htmlFor="quantity">
               Quantity
             </label>
             <input
@@ -102,17 +105,14 @@ export default async function ProductDetailPage({
               min={1}
               max={product.inventory}
               defaultValue={1}
-              className="w-28 rounded-md border border-slate-300 px-3 py-2 text-sm outline-none ring-sky-300 focus:ring"
+              className="rb-input w-28"
             />
-            <button
-              type="submit"
-              className="rounded-md bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-700"
-            >
+            <button type="submit" className="rb-btn">
               Add to cart
             </button>
           </form>
         ) : (
-          <div className="rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800">
+          <div className="rounded-xl border border-[rgba(255,184,91,0.42)] bg-[rgba(255,184,91,0.12)] px-4 py-3 text-sm text-[#ffd7a2]">
             This product is currently out of stock.
           </div>
         )}

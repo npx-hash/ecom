@@ -33,21 +33,18 @@ export default async function CartPage({ searchParams }: CartPageProps) {
 
   return (
     <div className="space-y-6">
-      <h1 className="text-3xl font-bold text-slate-900">Your Cart</h1>
+      <h1 className="rb-title text-4xl text-[#edf5dd]">Your Stash</h1>
 
       {errorMessage ? (
-        <p className="rounded-md border border-rose-200 bg-rose-50 px-3 py-2 text-sm text-rose-700">
+        <p className="rb-alert">
           {errorMessage}
         </p>
       ) : null}
 
       {cartItems.length === 0 ? (
-        <div className="rounded-2xl border border-slate-200 bg-white p-8 text-center">
-          <p className="text-slate-600">Your cart is empty.</p>
-          <Link
-            href="/products"
-            className="mt-4 inline-block rounded-md bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-700"
-          >
+        <div className="rb-panel p-8 text-center">
+          <p className="text-[#a5bc9f]">Your cart is empty.</p>
+          <Link href="/products" className="rb-btn mt-4 inline-block">
             Browse products
           </Link>
         </div>
@@ -55,15 +52,12 @@ export default async function CartPage({ searchParams }: CartPageProps) {
         <div className="grid gap-6 lg:grid-cols-[2fr_1fr]">
           <section className="space-y-4">
             {cartItems.map((item) => (
-              <article
-                key={item.id}
-                className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm"
-              >
+              <article key={item.id} className="rb-panel p-4">
                 <div className="flex flex-wrap items-start justify-between gap-4">
                   <div className="flex-1">
-                    <p className="text-lg font-semibold text-slate-900">{item.product.name}</p>
-                    <p className="mt-1 text-sm text-slate-600">{item.product.sku}</p>
-                    <p className="mt-2 text-sm font-medium text-slate-900">
+                    <p className="text-xl font-semibold text-[#edf5dd]">{item.product.name}</p>
+                    <p className="mt-1 text-sm text-[#9ab194]">{item.product.sku}</p>
+                    <p className="mt-2 text-sm font-medium text-[#daf4b4]">
                       {formatPrice(item.product.priceCents)}
                     </p>
                   </div>
@@ -77,22 +71,16 @@ export default async function CartPage({ searchParams }: CartPageProps) {
                         min={1}
                         max={Math.max(item.product.inventory, 1)}
                         defaultValue={item.quantity}
-                        className="w-20 rounded-md border border-slate-300 px-2 py-1.5 text-sm"
+                        className="rb-input w-20"
                       />
-                      <button
-                        type="submit"
-                        className="rounded-md border border-slate-300 px-3 py-1.5 text-sm font-medium hover:border-slate-400"
-                      >
+                      <button type="submit" className="rb-btn-secondary !py-1.5 !text-[11px]">
                         Update
                       </button>
                     </form>
 
                     <form action={removeCartItemAction}>
                       <input type="hidden" name="cartItemId" value={item.id} />
-                      <button
-                        type="submit"
-                        className="rounded-md border border-rose-200 px-3 py-1.5 text-sm font-medium text-rose-700 hover:bg-rose-50"
-                      >
+                      <button type="submit" className="rb-btn-danger !py-1.5 !text-[11px]">
                         Remove
                       </button>
                     </form>
@@ -102,19 +90,16 @@ export default async function CartPage({ searchParams }: CartPageProps) {
             ))}
           </section>
 
-          <aside className="h-fit rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
-            <h2 className="text-lg font-semibold text-slate-900">Summary</h2>
-            <div className="mt-4 flex items-center justify-between text-sm text-slate-700">
+          <aside className="rb-panel h-fit p-5">
+            <h2 className="rb-title text-2xl text-[#edf5dd]">Summary</h2>
+            <div className="mt-4 flex items-center justify-between text-sm text-[#adc1a6]">
               <span>Subtotal</span>
-              <span className="font-semibold text-slate-900">{formatPrice(subtotal)}</span>
+              <span className="font-semibold text-[#daf4b4]">{formatPrice(subtotal)}</span>
             </div>
-            <p className="mt-3 text-xs text-slate-500">
+            <p className="mt-3 text-xs text-[#8ea88b]">
               Taxes and shipping are collected during checkout.
             </p>
-            <Link
-              href="/checkout"
-              className="mt-5 inline-flex w-full items-center justify-center rounded-md bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-700"
-            >
+            <Link href="/checkout" className="rb-btn mt-5 inline-flex w-full items-center justify-center">
               Continue to checkout
             </Link>
           </aside>

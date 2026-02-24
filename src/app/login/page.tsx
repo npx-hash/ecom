@@ -22,12 +22,13 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
   const errorMessage = params.error?.toString().trim();
 
   return (
-    <div className="mx-auto max-w-lg rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
-      <h1 className="text-3xl font-bold text-slate-900">Welcome back</h1>
-      <p className="mt-2 text-sm text-slate-600">Login to manage your account and orders.</p>
+    <div className="rb-panel mx-auto max-w-lg p-8">
+      <p className="rb-chip">Member Access</p>
+      <h1 className="rb-title mt-4 text-4xl text-[#edf5dd]">Welcome back</h1>
+      <p className="mt-2 text-sm text-[#a7bc9f]">Login to manage your account and orders.</p>
 
       {errorMessage ? (
-        <p className="mt-4 rounded-md border border-rose-200 bg-rose-50 px-3 py-2 text-sm text-rose-700">
+        <p className="rb-alert mt-4">
           {errorMessage}
         </p>
       ) : null}
@@ -35,7 +36,7 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
       <form action={loginAction} className="mt-6 space-y-4">
         <input type="hidden" name="next" value={nextPath} />
         <div>
-          <label className="mb-1 block text-sm font-medium text-slate-700" htmlFor="email">
+          <label className="rb-label" htmlFor="email">
             Email
           </label>
           <input
@@ -43,11 +44,11 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
             name="email"
             type="email"
             required
-            className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm outline-none ring-sky-300 focus:ring"
+            className="rb-input"
           />
         </div>
         <div>
-          <label className="mb-1 block text-sm font-medium text-slate-700" htmlFor="password">
+          <label className="rb-label" htmlFor="password">
             Password
           </label>
           <input
@@ -55,20 +56,20 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
             name="password"
             type="password"
             required
-            className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm outline-none ring-sky-300 focus:ring"
+            className="rb-input"
           />
         </div>
-        <button
-          type="submit"
-          className="w-full rounded-md bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-700"
-        >
+        <button type="submit" className="rb-btn w-full">
           Sign in
         </button>
       </form>
 
-      <p className="mt-4 text-sm text-slate-600">
+      <p className="mt-4 text-sm text-[#a7bc9f]">
         Don&apos;t have an account?{" "}
-        <Link href={`/register?next=${encodeURIComponent(nextPath)}`} className="font-medium text-slate-900 underline">
+        <Link
+          href={`/register?next=${encodeURIComponent(nextPath)}`}
+          className="font-semibold text-[#def3bd] underline"
+        >
           Register
         </Link>
       </p>

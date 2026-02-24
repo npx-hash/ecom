@@ -28,25 +28,25 @@ export default async function AccountPage({ searchParams }: AccountPageProps) {
 
   return (
     <div className="space-y-6">
-      <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-        <h1 className="text-3xl font-bold text-slate-900">Account</h1>
-        <p className="mt-2 text-sm text-slate-600">
+      <section className="rb-panel p-6">
+        <h1 className="rb-title text-4xl text-[#edf5dd]">Account</h1>
+        <p className="mt-2 text-sm text-[#a7bc9f]">
           Signed in as <span className="font-semibold">{user.email}</span>.
         </p>
       </section>
 
       {recentOrderId ? (
-        <p className="rounded-md border border-emerald-200 bg-emerald-50 px-3 py-2 text-sm text-emerald-700">
+        <p className="rb-alert-success">
           Order <span className="font-mono">{recentOrderId}</span> has been placed successfully.
         </p>
       ) : null}
 
       <section className="space-y-4">
-        <h2 className="text-2xl font-semibold text-slate-900">Order history</h2>
+        <h2 className="rb-title text-3xl text-[#edf5dd]">Order history</h2>
         {orders.length === 0 ? (
-          <div className="rounded-xl border border-slate-200 bg-white p-6 text-slate-600">
+          <div className="rb-panel p-6 text-[#a5bc9f]">
             You have no orders yet.{" "}
-            <Link href="/products" className="font-medium text-slate-900 underline">
+            <Link href="/products" className="font-semibold text-[#def3bd] underline">
               Start shopping
             </Link>
             .
@@ -54,34 +54,34 @@ export default async function AccountPage({ searchParams }: AccountPageProps) {
         ) : (
           <div className="space-y-4">
             {orders.map((order) => (
-              <article key={order.id} className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
+              <article key={order.id} className="rb-panel p-5">
                 <div className="flex flex-wrap items-center justify-between gap-3">
                   <div>
-                    <p className="text-sm text-slate-600">Order ID</p>
-                    <p className="font-mono text-xs text-slate-800">{order.id}</p>
+                    <p className="text-sm text-[#8ea88b]">Order ID</p>
+                    <p className="font-mono text-xs text-[#dceccb]">{order.id}</p>
                   </div>
                   <div className="text-right">
-                    <p className="text-sm text-slate-600">{formatDateTime(order.createdAt)}</p>
-                    <p className="mt-1 text-sm font-semibold uppercase tracking-wide text-slate-900">
+                    <p className="text-sm text-[#93ab8e]">{formatDateTime(order.createdAt)}</p>
+                    <p className="mt-1 text-sm font-semibold uppercase tracking-wide text-[#daf4b4]">
                       {order.status}
                     </p>
                   </div>
                 </div>
-                <ul className="mt-4 space-y-1 text-sm text-slate-700">
+                <ul className="mt-4 space-y-1 text-sm text-[#b3c7ad]">
                   {order.items.map((item) => (
                     <li key={item.id} className="flex items-center justify-between gap-3">
                       <span>
                         {item.productName} x {item.quantity}
                       </span>
-                      <span className="font-medium">
+                      <span className="font-medium text-[#def3bd]">
                         {formatPrice(item.quantity * item.unitPriceCents)}
                       </span>
                     </li>
                   ))}
                 </ul>
-                <div className="mt-4 border-t border-slate-200 pt-4 text-right">
-                  <p className="text-sm text-slate-600">Total</p>
-                  <p className="text-lg font-semibold text-slate-900">
+                <div className="mt-4 border-t border-[rgba(174,224,114,0.2)] pt-4 text-right">
+                  <p className="text-sm text-[#8ea88b]">Total</p>
+                  <p className="text-lg font-semibold text-[#daf4b4]">
                     {formatPrice(order.totalCents)}
                   </p>
                 </div>

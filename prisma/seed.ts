@@ -5,111 +5,168 @@ const prisma = new PrismaClient();
 
 const categorySeeds = [
   {
-    name: "Performance Gear",
-    slug: "performance-gear",
-    description: "High-performance essentials for power users.",
+    name: "Flower",
+    slug: "flower",
+    description: "Indoor and sungrown whole flower selected by terpene profile.",
   },
   {
-    name: "Workspace",
-    slug: "workspace",
-    description: "Desk and office upgrades for productive teams.",
+    name: "Pre-Rolls",
+    slug: "pre-rolls",
+    description: "Single pre-rolls and multi-packs rolled with premium grind.",
   },
   {
-    name: "Audio",
-    slug: "audio",
-    description: "Studio-grade and everyday listening devices.",
+    name: "Vapes",
+    slug: "vapes",
+    description: "Live resin and rosin cartridges for flavor-forward sessions.",
+  },
+  {
+    name: "Edibles",
+    slug: "edibles",
+    description: "Precisely dosed gummies and chews with balanced cannabinoid ratios.",
+  },
+  {
+    name: "Concentrates",
+    slug: "concentrates",
+    description: "Solventless hash rosin, badder, and high-potency extracts.",
   },
 ];
 
 const productSeeds = [
   {
-    name: "Flux Mechanical Keyboard",
-    slug: "flux-mechanical-keyboard",
+    name: "Reaper Reserve Night Bloom 3.5g",
+    slug: "reaper-reserve-night-bloom-3-5g",
     description:
-      "Low-latency wireless mechanical keyboard with hot-swappable switches and per-key RGB.",
-    imageUrl:
-      "https://images.unsplash.com/photo-1618384887929-16ec33fab9ef?auto=format&fit=crop&w=1200&q=80",
-    priceCents: 15900,
-    compareAtPriceCents: 18900,
-    sku: "KB-FLUX-001",
-    inventory: 120,
+      "Dense, hand-trimmed indica flower with notes of blackberry, pine, and black pepper.",
+    imageUrl: null,
+    priceCents: 5200,
+    compareAtPriceCents: 6200,
+    sku: "FL-NBLM-35",
+    inventory: 84,
     isPublished: true,
-    categorySlug: "workspace",
+    categorySlug: "flower",
   },
   {
-    name: "Vector Ultralight Mouse",
-    slug: "vector-ultralight-mouse",
+    name: "Sunfire Diesel Pre-Roll 1g",
+    slug: "sunfire-diesel-pre-roll-1g",
     description:
-      "Ergonomic magnesium-shell gaming mouse with optical switches and 4K polling.",
-    imageUrl:
-      "https://images.unsplash.com/photo-1527814050087-3793815479db?auto=format&fit=crop&w=1200&q=80",
-    priceCents: 8900,
-    compareAtPriceCents: 10900,
-    sku: "MS-VCTR-001",
-    inventory: 180,
+      "Sativa-leaning pre-roll with citrus fuel aromatics and a bright daytime lift.",
+    imageUrl: null,
+    priceCents: 1500,
+    compareAtPriceCents: 1800,
+    sku: "PR-SNFD-1G",
+    inventory: 160,
     isPublished: true,
-    categorySlug: "performance-gear",
+    categorySlug: "pre-rolls",
   },
   {
-    name: "Arc Pro Headphones",
-    slug: "arc-pro-headphones",
+    name: "Moonmint Live Resin Cartridge 1g",
+    slug: "moonmint-live-resin-cartridge-1g",
     description:
-      "Closed-back headphones with adaptive ANC, spatial audio, and 40-hour battery life.",
-    imageUrl:
-      "https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=1200&q=80",
-    priceCents: 22900,
-    compareAtPriceCents: 25900,
-    sku: "HP-ARC-001",
-    inventory: 90,
+      "Ceramic-coil 1g cart featuring mint-forward live resin and clean, potent vapor.",
+    imageUrl: null,
+    priceCents: 4800,
+    compareAtPriceCents: 5600,
+    sku: "VP-MNMT-1G",
+    inventory: 112,
     isPublished: true,
-    categorySlug: "audio",
+    categorySlug: "vapes",
   },
   {
-    name: "Orbit 4K Monitor",
-    slug: "orbit-4k-monitor",
+    name: "Blood Orange Lift Gummies 100mg",
+    slug: "blood-orange-lift-gummies-100mg",
     description:
-      "27-inch 4K IPS monitor with 144Hz refresh rate and USB-C power delivery.",
-    imageUrl:
-      "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=1200&q=80",
-    priceCents: 44900,
-    compareAtPriceCents: 49900,
-    sku: "MN-ORBT-001",
-    inventory: 55,
+      "Fast-acting citrus gummies dosed at 10mg THC each for social sessions and creative flow.",
+    imageUrl: null,
+    priceCents: 3000,
+    compareAtPriceCents: 3600,
+    sku: "ED-BORG-100",
+    inventory: 190,
     isPublished: true,
-    categorySlug: "workspace",
+    categorySlug: "edibles",
   },
   {
-    name: "Nimbus Laptop Stand",
-    slug: "nimbus-laptop-stand",
+    name: "Reaper Rosin Badder 1g",
+    slug: "reaper-rosin-badder-1g",
     description:
-      "CNC-machined aluminum laptop stand with adjustable viewing angles.",
-    imageUrl:
-      "https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?auto=format&fit=crop&w=1200&q=80",
-    priceCents: 6900,
-    compareAtPriceCents: 7900,
-    sku: "ST-NMBS-001",
-    inventory: 210,
+      "Cold-cured solventless rosin badder with layered fruit funk and heavy body effects.",
+    imageUrl: null,
+    priceCents: 6500,
+    compareAtPriceCents: 7200,
+    sku: "CN-RSBN-1G",
+    inventory: 74,
     isPublished: true,
-    categorySlug: "workspace",
+    categorySlug: "concentrates",
   },
   {
-    name: "Nova USB-C Dock",
-    slug: "nova-usb-c-dock",
+    name: "Lavender Dream CBN Gummies 100mg",
+    slug: "lavender-dream-cbn-gummies-100mg",
     description:
-      "12-in-1 dock with dual display output, 2.5GbE networking, and fast charging.",
-    imageUrl:
-      "https://images.unsplash.com/photo-1625842268584-8f3296236761?auto=format&fit=crop&w=1200&q=80",
-    priceCents: 13900,
-    compareAtPriceCents: 16900,
-    sku: "DK-NOVA-001",
-    inventory: 130,
+      "Nighttime gummy blend with THC + CBN for a smooth wind-down and deeper sleep routine.",
+    imageUrl: null,
+    priceCents: 3400,
+    compareAtPriceCents: 3900,
+    sku: "ED-LVDR-100",
+    inventory: 140,
     isPublished: true,
-    categorySlug: "performance-gear",
+    categorySlug: "edibles",
   },
+  {
+    name: "Citrus Haze Mini Pre-Roll 5-Pack",
+    slug: "citrus-haze-mini-pre-roll-5-pack",
+    description:
+      "Five mini pre-rolls packed with tangy daytime flower for easy dosing on the move.",
+    imageUrl: null,
+    priceCents: 2800,
+    compareAtPriceCents: 3200,
+    sku: "PR-CTHZ-5P",
+    inventory: 150,
+    isPublished: true,
+    categorySlug: "pre-rolls",
+  },
+  {
+    name: "Glacier Press Rosin Vape 0.5g",
+    slug: "glacier-press-rosin-vape-0-5g",
+    description:
+      "Solventless 0.5g rosin vape with crisp terpene preservation and smooth cloud production.",
+    imageUrl: null,
+    priceCents: 3900,
+    compareAtPriceCents: 4500,
+    sku: "VP-GLPR-05",
+    inventory: 96,
+    isPublished: true,
+    categorySlug: "vapes",
+  },
+];
+
+const legacyCategorySlugs = ["performance-gear", "workspace", "audio"];
+
+const legacyProductSlugs = [
+  "flux-mechanical-keyboard",
+  "vector-ultralight-mouse",
+  "arc-pro-headphones",
+  "orbit-4k-monitor",
+  "nimbus-laptop-stand",
+  "nova-usb-c-dock",
 ];
 
 async function main() {
   const adminPasswordHash = await bcrypt.hash("Admin123!", 10);
+
+  await prisma.product.deleteMany({
+    where: {
+      slug: {
+        in: legacyProductSlugs,
+      },
+    },
+  });
+
+  await prisma.category.deleteMany({
+    where: {
+      slug: {
+        in: legacyCategorySlugs,
+      },
+    },
+  });
 
   await prisma.user.upsert({
     where: { email: "admin@ecom.local" },

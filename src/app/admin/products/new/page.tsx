@@ -166,7 +166,7 @@ export default async function AdminNewProductPage({
             name="imageUrl"
             type="url"
             className="rb-input"
-            placeholder="https://..."
+            placeholder="https://cdn.reaperbotany.com/products/night-bloom.jpg"
           />
           <p className="mt-1 text-xs text-[#8ea88b]">
             You can also upload an image file below. Uploaded file takes precedence.

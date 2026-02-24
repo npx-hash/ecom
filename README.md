@@ -1,4 +1,4 @@
-# Northstar Commerce
+# Reaper Botany Commerce
 
 Full-stack ecommerce starter built with:
 
@@ -9,6 +9,7 @@ Full-stack ecommerce starter built with:
 
 ## Features
 
+- 21+ age-gate before storefront access
 - Account registration/login/logout
 - Product catalog and product detail pages
 - Persistent cart per user
@@ -61,7 +62,7 @@ Change this after first login.
 - `npm run db:generate` - generate Prisma client
 - `npm run db:migrate` - apply migration SQL to SQLite
 - `npm run db:apply` - apply migration SQL directly
-- `npm run db:seed` - seed admin/categories/products
+- `npm run db:seed` - seed admin + canna categories/products
 - `npm run db:studio` - Prisma Studio
 
 ## Project Notes

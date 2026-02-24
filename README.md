@@ -1,36 +1,72 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Northstar Commerce
 
-## Getting Started
+Full-stack ecommerce starter built with:
 
-First, run the development server:
+- Next.js 16 (App Router, TypeScript)
+- Prisma + SQLite
+- Server actions for auth, cart, checkout, and admin CRUD
+- Role-based admin dashboard
+
+## Features
+
+- Account registration/login/logout
+- Product catalog and product detail pages
+- Persistent cart per user
+- Checkout flow creating orders + order items
+- User account page with order history
+- Admin dashboard
+  - Products: create, edit, publish/unpublish, delete
+  - Categories: create, edit, delete
+  - Orders: status updates
+  - Users: role updates (`USER` / `ADMIN`)
+- Product image support via URL or direct upload (`public/uploads`)
+
+## Quick Start
+
+1. Install dependencies:
+
+```bash
+npm install
+```
+
+2. Create and seed database:
+
+```bash
+npm run db:generate
+npm run db:migrate
+npm run db:seed
+```
+
+3. Run development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Default Admin Account
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Email: `admin@ecom.local`
+- Password: `Admin123!`
 
-## Learn More
+Change this after first login.
 
-To learn more about Next.js, take a look at the following resources:
+## Scripts
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `npm run dev` - start dev server
+- `npm run build` - production build
+- `npm run start` - run production server
+- `npm run lint` - lint project
+- `npm run db:generate` - generate Prisma client
+- `npm run db:migrate` - apply migration SQL to SQLite
+- `npm run db:apply` - apply migration SQL directly
+- `npm run db:seed` - seed admin/categories/products
+- `npm run db:studio` - Prisma Studio
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Project Notes
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Database file: `prisma/dev.db` (gitignored)
+- Session auth uses signed HTTP-only cookies (`AUTH_SECRET` in `.env`)
+- Uploads are stored on local disk (`public/uploads`) for local/self-hosted setups.
+  For cloud/serverless deployments, replace with S3/R2/GCS object storage.

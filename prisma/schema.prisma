@@ -1,0 +1,96 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String     @id @default(cuid())
+  name         String
+  email        String     @unique
+  passwordHash String
+  role         String     @default("USER")
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+  cartItems    CartItem[]
+  orders       Order[]
+}
+
+model Category {
+  id          String    @id @default(cuid())
+  name        String    @unique
+  slug        String    @unique
+  description String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  products    Product[]
+}
+
+model Product {
+  id                  String      @id @default(cuid())
+  name                String
+  slug                String      @unique
+  description         String
+  imageUrl            String?
+  priceCents          Int
+  compareAtPriceCents Int?
+  sku                 String      @unique
+  inventory           Int         @default(0)
+  isPublished         Boolean     @default(false)
+  categoryId          String?
+  category            Category?   @relation(fields: [categoryId], references: [id])
+  createdAt           DateTime    @default(now())
+  updatedAt           DateTime    @updatedAt
+  orderItems          OrderItem[]
+  cartItems           CartItem[]
+}
+
+model CartItem {
+  id        String   @id @default(cuid())
+  quantity  Int      @default(1)
+  userId    String
+  productId String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user      User     @relation(fields: [userId], references: [id])
+  product   Product  @relation(fields: [productId], references: [id])
+
+  @@unique([userId, productId])
+}
+
+model Order {
+  id                 String      @id @default(cuid())
+  userId             String
+  status             String      @default("PENDING")
+  totalCents         Int
+  shippingName       String
+  shippingEmail      String
+  shippingPhone      String?
+  shippingAddress1   String
+  shippingAddress2   String?
+  shippingCity       String
+  shippingState      String
+  shippingPostalCode String
+  shippingCountry    String
+  notes              String?
+  createdAt          DateTime    @default(now())
+  updatedAt          DateTime    @updatedAt
+  user               User        @relation(fields: [userId], references: [id])
+  items              OrderItem[]
+}
+
+model OrderItem {
+  id              String  @id @default(cuid())
+  orderId         String
+  productId       String
+  quantity        Int
+  unitPriceCents  Int
+  productName     String
+  productSlug     String
+  productImageUrl String?
+  order           Order   @relation(fields: [orderId], references: [id])
+  product         Product @relation(fields: [productId], references: [id])
+}

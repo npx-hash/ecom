@@ -1,0 +1,69 @@
+import Link from "next/link";
+
+import { formatPrice } from "@/lib/format";
+import { prisma } from "@/lib/prisma";
+
+export default async function AdminOverviewPage() {
+  const [usersCount, productsCount, publishedProductsCount, ordersCount, revenue] =
+    await Promise.all([
+      prisma.user.count(),
+      prisma.product.count(),
+      prisma.product.count({
+        where: { isPublished: true },
+      }),
+      prisma.order.count(),
+      prisma.order.aggregate({
+        _sum: {
+          totalCents: true,
+        },
+      }),
+    ]);
+
+  const stats = [
+    { label: "Total users", value: usersCount.toString() },
+    { label: "Products", value: productsCount.toString() },
+    { label: "Published products", value: publishedProductsCount.toString() },
+    { label: "Orders", value: ordersCount.toString() },
+    {
+      label: "Gross revenue",
+      value: formatPrice(revenue._sum.totalCents ?? 0),
+    },
+  ];
+
+  return (
+    <div className="space-y-6">
+      <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+        {stats.map((stat) => (
+          <article
+            key={stat.label}
+            className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm"
+          >
+            <p className="text-sm text-slate-500">{stat.label}</p>
+            <p className="mt-2 text-2xl font-semibold text-slate-900">{stat.value}</p>
+          </article>
+        ))}
+      </section>
+
+      <section className="grid gap-4 sm:grid-cols-2">
+        <Link
+          href="/admin/products/new"
+          className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-slate-300"
+        >
+          <h2 className="text-lg font-semibold text-slate-900">Create product</h2>
+          <p className="mt-2 text-sm text-slate-600">
+            Add new SKUs, upload images, and publish products.
+          </p>
+        </Link>
+        <Link
+          href="/admin/orders"
+          className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-slate-300"
+        >
+          <h2 className="text-lg font-semibold text-slate-900">Manage orders</h2>
+          <p className="mt-2 text-sm text-slate-600">
+            Update fulfillment statuses from pending to delivered.
+          </p>
+        </Link>
+      </section>
+    </div>
+  );
+}

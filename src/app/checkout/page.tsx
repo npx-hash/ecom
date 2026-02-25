@@ -34,8 +34,8 @@ export default async function CheckoutPage({ searchParams }: CheckoutPageProps) 
   return (
     <div className="grid gap-6 lg:grid-cols-[1.8fr_1fr]">
       <section className="rb-panel p-6">
-        <h1 className="rb-title text-4xl text-[#edf5dd]">Checkout</h1>
-        <p className="mt-2 text-sm text-[#a7bc9f]">
+        <h1 className="rb-title text-4xl text-[var(--rb-text)]">Checkout</h1>
+        <p className="mt-2 text-sm text-[var(--rb-muted)]">
           Place your order and we will track fulfillment from the admin dashboard.
         </p>
 
@@ -177,29 +177,29 @@ export default async function CheckoutPage({ searchParams }: CheckoutPageProps) 
       </section>
 
       <aside className="rb-panel h-fit p-5">
-        <h2 className="rb-title text-2xl text-[#edf5dd]">Order summary</h2>
+        <h2 className="rb-title text-2xl text-[var(--rb-text)]">Order summary</h2>
         <ul className="mt-4 space-y-2">
           {cartItems.map((item) => (
             <li key={item.id} className="flex items-start justify-between gap-3 text-sm">
               <div>
-                <p className="font-medium text-[#e7f3da]">{item.product.name}</p>
-                <p className="text-[#8ea88b]">Qty {item.quantity}</p>
+                <p className="font-medium text-[var(--rb-text)]">{item.product.name}</p>
+                <p className="text-[var(--rb-muted)]">Qty {item.quantity}</p>
               </div>
-              <p className="font-semibold text-[#daf4b4]">
+              <p className="font-semibold text-[var(--rb-accent-strong)]">
                 {formatPrice(item.quantity * item.product.priceCents)}
               </p>
             </li>
           ))}
         </ul>
-        <div className="mt-4 border-t border-[rgba(174,224,114,0.2)] pt-4">
+        <div className="mt-4 border-t border-[rgba(47,111,237,0.18)] pt-4">
           <div className="flex items-center justify-between text-sm">
-            <span className="text-[#a6bc9f]">Subtotal</span>
-            <span className="font-semibold text-[#daf4b4]">{formatPrice(subtotal)}</span>
+            <span className="text-[var(--rb-muted)]">Subtotal</span>
+            <span className="font-semibold text-[var(--rb-accent-strong)]">{formatPrice(subtotal)}</span>
           </div>
         </div>
         <Link
           href="/cart"
-          className="mt-4 inline-block text-sm font-semibold uppercase tracking-[0.12em] text-[#b2c7aa] hover:text-[#e7f6d2]"
+          className="mt-4 inline-block text-sm font-semibold uppercase tracking-[0.12em] text-[var(--rb-accent-strong)] hover:text-[var(--rb-accent-strong)]"
         >
           Back to cart
         </Link>
@@ -207,3 +207,4 @@ export default async function CheckoutPage({ searchParams }: CheckoutPageProps) 
     </div>
   );
 }
+

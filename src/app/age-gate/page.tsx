@@ -23,11 +23,11 @@ export default async function AgeGatePage({ searchParams }: AgeGatePageProps) {
   return (
     <div className="mx-auto max-w-2xl py-6">
       <section className="rb-panel rb-fade-up p-8 text-center">
-        <p className="rb-chip">Age Verification</p>
-        <h1 className="rb-title mt-4 text-5xl text-[#edf5dd]">21+ Entry</h1>
-        <p className="mt-4 text-sm leading-7 text-[#a7bc9f]">
-          Reaper Botany sells cannabis products intended for adults 21 and older. You must
-          verify your age before entering the storefront.
+        <p className="rb-chip">Preview Gate</p>
+        <h1 className="rb-title mt-4 text-5xl">Private Access</h1>
+        <p className="mt-4 text-sm leading-7 text-[var(--rb-muted)]">
+          This optional gate can be used when you want to restrict access during internal demos or
+          staged testing sessions.
         </p>
 
         {errorMessage ? <p className="rb-alert mt-4 text-left">{errorMessage}</p> : null}
@@ -35,15 +35,15 @@ export default async function AgeGatePage({ searchParams }: AgeGatePageProps) {
         <form action={confirmAgeGateAction} className="mt-6 space-y-3">
           <input type="hidden" name="next" value={nextPath} />
           <button type="submit" name="isOfAge" value="yes" className="rb-btn w-full">
-            I am 21+, enter site
+            Continue to storefront
           </button>
           <button type="submit" name="isOfAge" value="no" className="rb-btn-danger w-full !py-2.5">
-            I am under 21
+            Stay blocked
           </button>
         </form>
 
-        <p className="mt-5 text-xs uppercase tracking-[0.12em] text-[#8ea88b]">
-          Please consume responsibly. Keep cannabis away from children and pets.
+        <p className="mt-5 text-xs uppercase tracking-[0.12em] text-[var(--rb-muted)]">
+          Disable middleware gate if you want open local access.
         </p>
       </section>
     </div>

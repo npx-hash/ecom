@@ -12,8 +12,8 @@ export default async function AdminLayout({
     <div className="space-y-6">
       <header className="rb-panel p-6">
         <p className="rb-chip">Control Room</p>
-        <h1 className="rb-title mt-4 text-4xl text-[#edf5dd]">Admin dashboard</h1>
-        <p className="mt-2 text-sm text-[#a7bc9f]">
+        <h1 className="rb-title mt-4 text-4xl text-[var(--rb-text)]">Admin dashboard</h1>
+        <p className="mt-2 text-sm text-[var(--rb-muted)]">
           Manage catalog, inventory, users, orders, and publishing state.
         </p>
         <div className="mt-4">
@@ -24,3 +24,4 @@ export default async function AdminLayout({
     </div>
   );
 }
+

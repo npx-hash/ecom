@@ -1,6 +1,6 @@
-# Reaper Botany Commerce
+# Ecom Template
 
-Full-stack ecommerce starter built with:
+A full-stack ecommerce starter for in-house QA and feature testing, built with:
 
 - Next.js 16 (App Router, TypeScript)
 - Prisma + SQLite
@@ -9,7 +9,6 @@ Full-stack ecommerce starter built with:
 
 ## Features
 
-- 21+ age-gate before storefront access
 - Account registration/login/logout
 - Product catalog and product detail pages
 - Persistent cart per user
@@ -62,7 +61,7 @@ Change this after first login.
 - `npm run db:generate` - generate Prisma client
 - `npm run db:migrate` - apply migration SQL to SQLite
 - `npm run db:apply` - apply migration SQL directly
-- `npm run db:seed` - seed admin + canna categories/products
+- `npm run db:seed` - seed admin + generic template categories/products
 - `npm run db:studio` - Prisma Studio
 
 ## Project Notes

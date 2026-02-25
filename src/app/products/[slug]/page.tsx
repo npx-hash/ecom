@@ -42,7 +42,7 @@ export default async function ProductDetailPage({
 
   return (
     <div className="rb-panel rb-fade-up grid gap-6 p-6 md:grid-cols-2">
-      <div className="overflow-hidden rounded-xl border border-[rgba(174,224,114,0.18)] bg-[#0d1710]">
+      <div className="overflow-hidden rounded-xl border border-[rgba(47,111,237,0.18)] bg-[#edf2ff]">
         {product.imageUrl ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img
@@ -51,35 +51,37 @@ export default async function ProductDetailPage({
             className="h-full w-full object-cover"
           />
         ) : (
-          <div className="h-[420px] w-full bg-gradient-to-tr from-[#1a2a1c] to-[#0d1710]" />
+          <div className="h-[420px] w-full bg-gradient-to-tr from-[#dbe7ff] to-[#edf2ff]" />
         )}
       </div>
 
       <div className="space-y-5">
         <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#9ab194]">
+          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--rb-muted)]">
             {product.category?.name ?? "Uncategorized"}
           </p>
-          <h1 className="rb-title mt-1 text-4xl text-[#edf5dd]">{product.name}</h1>
+          <h1 className="rb-title mt-1 text-4xl">{product.name}</h1>
         </div>
 
         <div className="flex items-end gap-3">
-          <p className="text-3xl font-bold text-[#daf4b4]">{formatPrice(product.priceCents)}</p>
+          <p className="text-3xl font-bold text-[var(--rb-accent-strong)]">
+            {formatPrice(product.priceCents)}
+          </p>
           {product.compareAtPriceCents ? (
-            <p className="text-lg text-[#7f927c] line-through">
+            <p className="text-lg text-[#7a8da8] line-through">
               {formatPrice(product.compareAtPriceCents)}
             </p>
           ) : null}
         </div>
 
-        <p className="whitespace-pre-wrap text-sm leading-7 text-[#a5bc9f]">
+        <p className="whitespace-pre-wrap text-sm leading-7 text-[var(--rb-muted)]">
           {product.description}
         </p>
 
-        <p className="text-sm font-medium text-[#b8cdb0]">
-          SKU: <span className="font-mono text-[#d5e7c7]">{product.sku}</span>
+        <p className="text-sm font-medium text-[var(--rb-muted)]">
+          SKU: <span className="font-mono text-[var(--rb-text)]">{product.sku}</span>
         </p>
-        <p className="text-sm font-medium text-[#b8cdb0]">
+        <p className="text-sm font-medium text-[var(--rb-muted)]">
           {product.inventory > 0 ? `${product.inventory} in stock` : "Out of stock"}
         </p>
 
@@ -112,7 +114,7 @@ export default async function ProductDetailPage({
             </button>
           </form>
         ) : (
-          <div className="rounded-xl border border-[rgba(255,184,91,0.42)] bg-[rgba(255,184,91,0.12)] px-4 py-3 text-sm text-[#ffd7a2]">
+          <div className="rounded-xl border border-[rgba(212,88,112,0.32)] bg-[rgba(212,88,112,0.08)] px-4 py-3 text-sm text-[#a1374b]">
             This product is currently out of stock.
           </div>
         )}

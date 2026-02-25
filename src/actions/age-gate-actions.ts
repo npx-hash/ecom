@@ -15,7 +15,7 @@ export async function confirmAgeGateAction(formData: FormData) {
 
   if (answer !== "yes") {
     redirect(
-      "/age-gate?error=You must be 21 or older to access Reaper Botany.",
+      "/age-gate?error=Access was not confirmed for this preview environment.",
     );
   }
 

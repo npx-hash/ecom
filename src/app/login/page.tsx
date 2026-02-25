@@ -24,8 +24,8 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
   return (
     <div className="rb-panel mx-auto max-w-lg p-8">
       <p className="rb-chip">Member Access</p>
-      <h1 className="rb-title mt-4 text-4xl text-[#edf5dd]">Welcome back</h1>
-      <p className="mt-2 text-sm text-[#a7bc9f]">Login to manage your account and orders.</p>
+      <h1 className="rb-title mt-4 text-4xl text-[var(--rb-text)]">Welcome back</h1>
+      <p className="mt-2 text-sm text-[var(--rb-muted)]">Login to manage your account and orders.</p>
 
       {errorMessage ? (
         <p className="rb-alert mt-4">
@@ -64,11 +64,11 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
         </button>
       </form>
 
-      <p className="mt-4 text-sm text-[#a7bc9f]">
+      <p className="mt-4 text-sm text-[var(--rb-muted)]">
         Don&apos;t have an account?{" "}
         <Link
           href={`/register?next=${encodeURIComponent(nextPath)}`}
-          className="font-semibold text-[#def3bd] underline"
+          className="font-semibold text-[var(--rb-accent-strong)] underline"
         >
           Register
         </Link>
@@ -76,3 +76,4 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
     </div>
   );
 }
+

@@ -24,8 +24,8 @@ const ibmPlexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Reaper Botany",
-  description: "Reaper Botany dispensary commerce platform.",
+  title: "Ecom Template",
+  description: "Minimal ecommerce template for in-house testing.",
 };
 
 export default function RootLayout({
@@ -39,18 +39,18 @@ export default function RootLayout({
         <div className="rb-shell rb-page-frame">
           <div
             aria-hidden
-            className="rb-float pointer-events-none fixed right-[-90px] top-24 h-56 w-56 rounded-full bg-[radial-gradient(circle,_rgba(174,224,114,0.22)_0%,_rgba(174,224,114,0)_70%)] blur-xl"
+            className="rb-float pointer-events-none fixed right-[-90px] top-24 h-56 w-56 rounded-full bg-[radial-gradient(circle,_rgba(47,111,237,0.24)_0%,_rgba(47,111,237,0)_70%)] blur-xl"
           />
           <div
             aria-hidden
-            className="pointer-events-none fixed bottom-[-120px] left-[-90px] h-72 w-72 rounded-full bg-[radial-gradient(circle,_rgba(104,165,77,0.18)_0%,_rgba(104,165,77,0)_70%)] blur-xl"
+            className="pointer-events-none fixed bottom-[-120px] left-[-90px] h-72 w-72 rounded-full bg-[radial-gradient(circle,_rgba(122,159,245,0.24)_0%,_rgba(122,159,245,0)_70%)] blur-xl"
           />
           <SiteHeader />
           <main className="mx-auto w-full max-w-7xl px-4 py-8 md:px-8">{children}</main>
-          <footer className="mt-14 border-t border-[#2a3a2a] bg-[rgba(10,18,12,0.65)]">
-            <div className="mx-auto flex w-full max-w-7xl flex-wrap items-center justify-between gap-2 px-4 py-6 text-xs text-[#9ab194] md:px-8">
-              <p>Reaper Botany. Curated flower, crafted concentrates, and trusted delivery.</p>
-              <p className="font-mono">For adults 21+ only.</p>
+          <footer className="mt-14 border-t border-[rgba(47,111,237,0.2)] bg-[rgba(255,255,255,0.7)]">
+            <div className="mx-auto flex w-full max-w-7xl flex-wrap items-center justify-between gap-2 px-4 py-6 text-xs text-[var(--rb-muted)] md:px-8">
+              <p>Ecom Template for in-house storefront testing and QA workflows.</p>
+              <p className="font-mono">Built for rapid iteration.</p>
             </div>
           </footer>
         </div>

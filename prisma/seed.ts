@@ -5,165 +5,186 @@ const prisma = new PrismaClient();
 
 const categorySeeds = [
   {
-    name: "Flower",
-    slug: "flower",
-    description: "Indoor and sungrown whole flower selected by terpene profile.",
+    name: "Keyboards",
+    slug: "keyboards",
+    description: "Mechanical and low-profile keyboards for work and gaming setups.",
   },
   {
-    name: "Pre-Rolls",
-    slug: "pre-rolls",
-    description: "Single pre-rolls and multi-packs rolled with premium grind.",
+    name: "Mice",
+    slug: "mice",
+    description: "Precision wired and wireless mice for productivity and performance.",
   },
   {
-    name: "Vapes",
-    slug: "vapes",
-    description: "Live resin and rosin cartridges for flavor-forward sessions.",
+    name: "Audio",
+    slug: "audio",
+    description: "Headphones and desktop audio gear for focused sessions.",
   },
   {
-    name: "Edibles",
-    slug: "edibles",
-    description: "Precisely dosed gummies and chews with balanced cannabinoid ratios.",
+    name: "Desk Setup",
+    slug: "desk-setup",
+    description: "Workspace essentials including stands, lighting, and ergonomic upgrades.",
   },
   {
-    name: "Concentrates",
-    slug: "concentrates",
-    description: "Solventless hash rosin, badder, and high-potency extracts.",
+    name: "Accessories",
+    slug: "accessories",
+    description: "Everyday carry accessories for charging, travel, and organization.",
   },
 ];
 
 const productSeeds = [
   {
-    name: "Reaper Reserve Night Bloom 3.5g",
-    slug: "reaper-reserve-night-bloom-3-5g",
+    name: "Aurora Mechanical Keyboard",
+    slug: "aurora-mechanical-keyboard",
     description:
-      "Dense, hand-trimmed indica flower with notes of blackberry, pine, and black pepper.",
+      "Hot-swappable 75% keyboard with pre-lubed linear switches and programmable layers.",
     imageUrl: null,
-    priceCents: 5200,
-    compareAtPriceCents: 6200,
-    sku: "FL-NBLM-35",
-    inventory: 84,
+    priceCents: 12900,
+    compareAtPriceCents: 14900,
+    sku: "KB-AURORA-75",
+    inventory: 54,
     isPublished: true,
-    categorySlug: "flower",
+    categorySlug: "keyboards",
   },
   {
-    name: "Sunfire Diesel Pre-Roll 1g",
-    slug: "sunfire-diesel-pre-roll-1g",
+    name: "Vector Wireless Mouse",
+    slug: "vector-wireless-mouse",
     description:
-      "Sativa-leaning pre-roll with citrus fuel aromatics and a bright daytime lift.",
+      "Ergonomic wireless mouse with adjustable DPI profiles and USB-C fast charging.",
     imageUrl: null,
-    priceCents: 1500,
-    compareAtPriceCents: 1800,
-    sku: "PR-SNFD-1G",
-    inventory: 160,
+    priceCents: 6900,
+    compareAtPriceCents: 7900,
+    sku: "MS-VECTOR-WL",
+    inventory: 88,
     isPublished: true,
-    categorySlug: "pre-rolls",
+    categorySlug: "mice",
   },
   {
-    name: "Moonmint Live Resin Cartridge 1g",
-    slug: "moonmint-live-resin-cartridge-1g",
+    name: "Echo ANC Headphones",
+    slug: "echo-anc-headphones",
     description:
-      "Ceramic-coil 1g cart featuring mint-forward live resin and clean, potent vapor.",
+      "Over-ear headphones with hybrid active noise cancellation and 40-hour battery life.",
     imageUrl: null,
-    priceCents: 4800,
-    compareAtPriceCents: 5600,
-    sku: "VP-MNMT-1G",
-    inventory: 112,
+    priceCents: 18900,
+    compareAtPriceCents: 21900,
+    sku: "AU-ECHO-ANC",
+    inventory: 42,
     isPublished: true,
-    categorySlug: "vapes",
+    categorySlug: "audio",
   },
   {
-    name: "Blood Orange Lift Gummies 100mg",
-    slug: "blood-orange-lift-gummies-100mg",
+    name: "Nimbus Laptop Stand",
+    slug: "nimbus-laptop-stand",
     description:
-      "Fast-acting citrus gummies dosed at 10mg THC each for social sessions and creative flow.",
+      "Foldable aluminum stand with adjustable height to improve posture and airflow.",
     imageUrl: null,
-    priceCents: 3000,
-    compareAtPriceCents: 3600,
-    sku: "ED-BORG-100",
-    inventory: 190,
+    priceCents: 4900,
+    compareAtPriceCents: 5900,
+    sku: "DS-NIMBUS-ST",
+    inventory: 103,
     isPublished: true,
-    categorySlug: "edibles",
+    categorySlug: "desk-setup",
   },
   {
-    name: "Reaper Rosin Badder 1g",
-    slug: "reaper-rosin-badder-1g",
+    name: "Atlas USB-C Dock",
+    slug: "atlas-usb-c-dock",
     description:
-      "Cold-cured solventless rosin badder with layered fruit funk and heavy body effects.",
+      "Compact 9-in-1 dock with dual display output, Ethernet, and high-speed passthrough charging.",
     imageUrl: null,
-    priceCents: 6500,
-    compareAtPriceCents: 7200,
-    sku: "CN-RSBN-1G",
+    priceCents: 9900,
+    compareAtPriceCents: 11900,
+    sku: "AC-ATLAS-DOCK",
+    inventory: 67,
+    isPublished: true,
+    categorySlug: "accessories",
+  },
+  {
+    name: "Orbit 4K Webcam",
+    slug: "orbit-4k-webcam",
+    description:
+      "4K webcam with auto-framing, dual microphones, and low-light correction for calls.",
+    imageUrl: null,
+    priceCents: 12900,
+    compareAtPriceCents: 14900,
+    sku: "AC-ORBIT-CAM",
+    inventory: 38,
+    isPublished: true,
+    categorySlug: "accessories",
+  },
+  {
+    name: "Pulse Monitor Light Bar",
+    slug: "pulse-monitor-light-bar",
+    description:
+      "Glare-free monitor light bar with adjustable warmth and touch controls.",
+    imageUrl: null,
+    priceCents: 7900,
+    compareAtPriceCents: 8900,
+    sku: "DS-PULSE-LB",
     inventory: 74,
     isPublished: true,
-    categorySlug: "concentrates",
+    categorySlug: "desk-setup",
   },
   {
-    name: "Lavender Dream CBN Gummies 100mg",
-    slug: "lavender-dream-cbn-gummies-100mg",
+    name: "Flow XL Desk Mat",
+    slug: "flow-xl-desk-mat",
     description:
-      "Nighttime gummy blend with THC + CBN for a smooth wind-down and deeper sleep routine.",
+      "Water-resistant extended desk mat with stitched edges and smooth glide surface.",
     imageUrl: null,
-    priceCents: 3400,
+    priceCents: 3200,
     compareAtPriceCents: 3900,
-    sku: "ED-LVDR-100",
+    sku: "DS-FLOW-MAT",
     inventory: 140,
     isPublished: true,
-    categorySlug: "edibles",
+    categorySlug: "desk-setup",
   },
-  {
-    name: "Citrus Haze Mini Pre-Roll 5-Pack",
-    slug: "citrus-haze-mini-pre-roll-5-pack",
-    description:
-      "Five mini pre-rolls packed with tangy daytime flower for easy dosing on the move.",
-    imageUrl: null,
-    priceCents: 2800,
-    compareAtPriceCents: 3200,
-    sku: "PR-CTHZ-5P",
-    inventory: 150,
-    isPublished: true,
-    categorySlug: "pre-rolls",
-  },
-  {
-    name: "Glacier Press Rosin Vape 0.5g",
-    slug: "glacier-press-rosin-vape-0-5g",
-    description:
-      "Solventless 0.5g rosin vape with crisp terpene preservation and smooth cloud production.",
-    imageUrl: null,
-    priceCents: 3900,
-    compareAtPriceCents: 4500,
-    sku: "VP-GLPR-05",
-    inventory: 96,
-    isPublished: true,
-    categorySlug: "vapes",
-  },
-];
-
-const legacyCategorySlugs = ["performance-gear", "workspace", "audio"];
-
-const legacyProductSlugs = [
-  "flux-mechanical-keyboard",
-  "vector-ultralight-mouse",
-  "arc-pro-headphones",
-  "orbit-4k-monitor",
-  "nimbus-laptop-stand",
-  "nova-usb-c-dock",
 ];
 
 async function main() {
   const adminPasswordHash = await bcrypt.hash("Admin123!", 10);
+  const retainedCategorySlugs = categorySeeds.map((category) => category.slug);
+  const retainedProductSlugs = productSeeds.map((product) => product.slug);
 
-  await prisma.product.deleteMany({
+  const removableProducts = await prisma.product.findMany({
     where: {
       slug: {
-        in: legacyProductSlugs,
+        notIn: retainedProductSlugs,
       },
     },
+    select: {
+      id: true,
+    },
   });
+  const removableProductIds = removableProducts.map((product) => product.id);
+
+  if (removableProductIds.length > 0) {
+    await prisma.cartItem.deleteMany({
+      where: {
+        productId: {
+          in: removableProductIds,
+        },
+      },
+    });
+
+    await prisma.orderItem.deleteMany({
+      where: {
+        productId: {
+          in: removableProductIds,
+        },
+      },
+    });
+
+    await prisma.product.deleteMany({
+      where: {
+        id: {
+          in: removableProductIds,
+        },
+      },
+    });
+  }
 
   await prisma.category.deleteMany({
     where: {
       slug: {
-        in: legacyCategorySlugs,
+        notIn: retainedCategorySlugs,
       },
     },
   });

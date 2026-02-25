@@ -27,7 +27,7 @@ export default async function AdminUsersPage({ searchParams }: AdminUsersPagePro
 
   return (
     <div className="space-y-4">
-      <h2 className="rb-title text-3xl text-[#edf5dd]">Users</h2>
+      <h2 className="rb-title text-3xl text-[var(--rb-text)]">Users</h2>
       {errorMessage ? (
         <p className="rb-alert">
           {errorMessage}
@@ -48,14 +48,14 @@ export default async function AdminUsersPage({ searchParams }: AdminUsersPagePro
           <tbody>
             {users.map((user) => (
               <tr key={user.id}>
-                <td className="px-4 py-3 font-medium text-[#edf5dd]">{user.name}</td>
-                <td className="px-4 py-3 text-[#c0d1b8]">{user.email}</td>
-                <td className="px-4 py-3 text-[#96ac91]">{formatDateTime(user.createdAt)}</td>
+                <td className="px-4 py-3 font-medium text-[var(--rb-text)]">{user.name}</td>
+                <td className="px-4 py-3 text-[var(--rb-muted)]">{user.email}</td>
+                <td className="px-4 py-3 text-[var(--rb-muted)]">{formatDateTime(user.createdAt)}</td>
                 <td className="px-4 py-3">
                   <span
                     className={`rb-badge ${
                       user.role === "ADMIN"
-                        ? "!border-[rgba(130,193,255,0.45)] !bg-[rgba(130,193,255,0.13)] !text-[#c7e8ff]"
+                        ? "!border-[rgba(130,193,255,0.45)] !bg-[rgba(130,193,255,0.13)] !text-[var(--rb-accent-strong)]"
                         : ""
                     }`}
                   >
@@ -86,3 +86,4 @@ export default async function AdminUsersPage({ searchParams }: AdminUsersPagePro
     </div>
   );
 }
+

@@ -3,8 +3,8 @@ import Link from "next/link";
 export default function NotFoundPage() {
   return (
     <div className="rb-panel mx-auto max-w-xl p-8 text-center">
-      <h1 className="rb-title text-4xl text-[#edf5dd]">Page not found</h1>
-      <p className="mt-3 text-sm text-[#a7bc9f]">
+      <h1 className="rb-title text-4xl text-[var(--rb-text)]">Page not found</h1>
+      <p className="mt-3 text-sm text-[var(--rb-muted)]">
         The page you requested does not exist or is no longer available.
       </p>
       <Link href="/" className="rb-btn mt-5 inline-block">
@@ -13,3 +13,4 @@ export default function NotFoundPage() {
     </div>
   );
 }
+

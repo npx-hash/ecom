@@ -33,7 +33,7 @@ export default async function AdminCategoriesPage({
   return (
     <div className="space-y-6">
       <section className="rb-panel p-6">
-        <h2 className="rb-title text-3xl text-[#edf5dd]">Create category</h2>
+        <h2 className="rb-title text-3xl text-[var(--rb-text)]">Create category</h2>
         {errorMessage ? (
           <p className="rb-alert mt-3">
             {errorMessage}
@@ -42,13 +42,13 @@ export default async function AdminCategoriesPage({
         <form action={createCategoryAction} className="mt-4 grid gap-3 sm:grid-cols-3">
           <input
             name="name"
-            placeholder="Example: Indoor Flower"
+            placeholder="Example: Desk Setup"
             required
             className="rb-input"
           />
           <input
             name="slug"
-            placeholder="indoor-flower (optional)"
+            placeholder="desk-setup (optional)"
             className="rb-input"
           />
           <button type="submit" className="rb-btn">
@@ -57,16 +57,16 @@ export default async function AdminCategoriesPage({
           <textarea
             name="description"
             rows={2}
-            placeholder="Premium whole flower eighths, quarters, and halves."
+            placeholder="Workspace lighting, stands, and ergonomic gear."
             className="rb-textarea sm:col-span-3"
           />
         </form>
       </section>
 
       <section className="space-y-3">
-        <h2 className="rb-title text-3xl text-[#edf5dd]">Existing categories</h2>
+        <h2 className="rb-title text-3xl text-[var(--rb-text)]">Existing categories</h2>
         {categories.length === 0 ? (
-          <p className="rb-panel p-6 text-[#a5bc9f]">
+          <p className="rb-panel p-6 text-[var(--rb-muted)]">
             No categories yet.
           </p>
         ) : (
@@ -105,7 +105,7 @@ export default async function AdminCategoriesPage({
                   Delete
                 </button>
               </form>
-              <p className="mt-2 text-xs text-[#8ea88b]">
+              <p className="mt-2 text-xs text-[var(--rb-muted)]">
                 {category._count.products} products assigned
               </p>
             </article>
@@ -115,3 +115,4 @@ export default async function AdminCategoriesPage({
     </div>
   );
 }
+

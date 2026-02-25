@@ -32,7 +32,7 @@ export default async function AdminProductsPage({
   return (
     <div className="space-y-4">
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <h2 className="rb-title text-3xl text-[#edf5dd]">Products</h2>
+        <h2 className="rb-title text-3xl text-[var(--rb-text)]">Products</h2>
         <Link href="/admin/products/new" className="rb-btn">
           New product
         </Link>
@@ -61,14 +61,14 @@ export default async function AdminProductsPage({
             {products.map((product) => (
               <tr key={product.id}>
                 <td className="px-4 py-3">
-                  <p className="font-medium text-[#edf5dd]">{product.name}</p>
-                  <p className="font-mono text-xs text-[#8ea88b]">{product.sku}</p>
+                  <p className="font-medium text-[var(--rb-text)]">{product.name}</p>
+                  <p className="font-mono text-xs text-[var(--rb-muted)]">{product.sku}</p>
                 </td>
-                <td className="px-4 py-3 text-[#daf4b4]">{formatPrice(product.priceCents)}</td>
-                <td className="px-4 py-3 text-[#c0d1b8]">
+                <td className="px-4 py-3 text-[var(--rb-accent-strong)]">{formatPrice(product.priceCents)}</td>
+                <td className="px-4 py-3 text-[var(--rb-muted)]">
                   {product.category?.name ?? "Uncategorized"}
                 </td>
-                <td className="px-4 py-3 text-[#c0d1b8]">{product.inventory}</td>
+                <td className="px-4 py-3 text-[var(--rb-muted)]">{product.inventory}</td>
                 <td className="px-4 py-3">
                   <span
                     className={`rb-badge ${
@@ -80,7 +80,7 @@ export default async function AdminProductsPage({
                     {product.isPublished ? "Published" : "Draft"}
                   </span>
                 </td>
-                <td className="px-4 py-3 text-[#96ac91]">{formatDateTime(product.updatedAt)}</td>
+                <td className="px-4 py-3 text-[var(--rb-muted)]">{formatDateTime(product.updatedAt)}</td>
                 <td className="px-4 py-3">
                   <div className="flex justify-end gap-2">
                     <Link
@@ -105,3 +105,4 @@ export default async function AdminProductsPage({
     </div>
   );
 }
+

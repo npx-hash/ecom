@@ -24,8 +24,8 @@ export default async function RegisterPage({ searchParams }: RegisterPageProps) 
   return (
     <div className="rb-panel mx-auto max-w-lg p-8">
       <p className="rb-chip">New Member</p>
-      <h1 className="rb-title mt-4 text-4xl text-[#edf5dd]">Create an account</h1>
-      <p className="mt-2 text-sm text-[#a7bc9f]">
+      <h1 className="rb-title mt-4 text-4xl text-[var(--rb-text)]">Create an account</h1>
+      <p className="mt-2 text-sm text-[var(--rb-muted)]">
         Register to save your cart and track orders.
       </p>
 
@@ -78,11 +78,11 @@ export default async function RegisterPage({ searchParams }: RegisterPageProps) 
         </button>
       </form>
 
-      <p className="mt-4 text-sm text-[#a7bc9f]">
+      <p className="mt-4 text-sm text-[var(--rb-muted)]">
         Already have an account?{" "}
         <Link
           href={`/login?next=${encodeURIComponent(nextPath)}`}
-          className="font-semibold text-[#def3bd] underline"
+          className="font-semibold text-[var(--rb-accent-strong)] underline"
         >
           Sign in
         </Link>
@@ -90,3 +90,4 @@ export default async function RegisterPage({ searchParams }: RegisterPageProps) 
     </div>
   );
 }
+

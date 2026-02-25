@@ -1,17 +1,17 @@
 @import "tailwindcss";
 
 :root {
-  --rb-bg: #08100a;
-  --rb-bg-soft: #101a12;
-  --rb-panel: rgba(14, 26, 18, 0.8);
-  --rb-panel-strong: rgba(10, 20, 14, 0.95);
-  --rb-border: rgba(174, 224, 114, 0.24);
-  --rb-border-strong: rgba(174, 224, 114, 0.45);
-  --rb-accent: #aee072;
-  --rb-accent-strong: #d0f199;
-  --rb-text: #f1f6e7;
-  --rb-muted: #9ab194;
-  --rb-danger: #ff7a81;
+  --rb-bg: #f5f8ff;
+  --rb-bg-soft: #eef3ff;
+  --rb-panel: rgba(255, 255, 255, 0.9);
+  --rb-panel-strong: rgba(255, 255, 255, 0.98);
+  --rb-border: rgba(47, 111, 237, 0.18);
+  --rb-border-strong: rgba(47, 111, 237, 0.38);
+  --rb-accent: #2f6fed;
+  --rb-accent-strong: #1d4ec4;
+  --rb-text: #142844;
+  --rb-muted: #5b6f8f;
+  --rb-danger: #d45870;
 }
 
 @theme inline {
@@ -31,9 +31,9 @@ body {
 
 body {
   background:
-    radial-gradient(circle at 10% 10%, rgba(174, 224, 114, 0.16) 0%, transparent 30%),
-    radial-gradient(circle at 90% 0%, rgba(86, 149, 62, 0.18) 0%, transparent 25%),
-    linear-gradient(160deg, #061009 0%, #08110a 40%, #0a140d 100%);
+    radial-gradient(circle at 5% 0%, rgba(47, 111, 237, 0.18) 0%, transparent 35%),
+    radial-gradient(circle at 95% 10%, rgba(122, 159, 245, 0.15) 0%, transparent 33%),
+    linear-gradient(180deg, #f8fbff 0%, #f3f7ff 52%, #edf3ff 100%);
   color: var(--rb-text);
   font-family: var(--font-body), sans-serif;
   letter-spacing: 0.01em;
@@ -44,9 +44,9 @@ body::before {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  background-image: radial-gradient(rgba(255, 255, 255, 0.03) 0.6px, transparent 0.6px);
-  background-size: 2px 2px;
-  opacity: 0.32;
+  background-image: radial-gradient(rgba(44, 84, 168, 0.09) 0.6px, transparent 0.6px);
+  background-size: 3px 3px;
+  opacity: 0.16;
   z-index: -1;
 }
 
@@ -65,7 +65,7 @@ h4,
 }
 
 ::selection {
-  color: #071109;
+  color: #ffffff;
   background: var(--rb-accent);
 }
 
@@ -81,22 +81,22 @@ h4,
   border: 1px solid var(--rb-border);
   background: linear-gradient(
     160deg,
-    rgba(19, 33, 23, 0.95) 0%,
-    rgba(10, 20, 14, 0.92) 65%,
-    rgba(9, 16, 11, 0.92) 100%
+    rgba(255, 255, 255, 0.96) 0%,
+    rgba(248, 251, 255, 0.96) 60%,
+    rgba(241, 246, 255, 0.98) 100%
   );
   border-radius: 1.25rem;
   box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.02) inset,
-    0 22px 40px rgba(0, 0, 0, 0.28);
+    0 0 0 1px rgba(255, 255, 255, 0.45) inset,
+    0 18px 36px rgba(29, 63, 121, 0.12);
 }
 
 .rb-panel-soft {
-  border: 1px solid rgba(174, 224, 114, 0.16);
+  border: 1px solid rgba(47, 111, 237, 0.14);
   background: linear-gradient(
     140deg,
-    rgba(24, 40, 28, 0.82) 0%,
-    rgba(11, 19, 13, 0.75) 100%
+    rgba(255, 255, 255, 0.88) 0%,
+    rgba(243, 248, 255, 0.88) 100%
   );
   border-radius: 1rem;
 }
@@ -114,21 +114,21 @@ h4,
   align-items: center;
   gap: 0.35rem;
   border-radius: 999px;
-  border: 1px solid rgba(174, 224, 114, 0.36);
-  background: rgba(174, 224, 114, 0.13);
+  border: 1px solid rgba(47, 111, 237, 0.3);
+  background: rgba(47, 111, 237, 0.08);
   padding: 0.35rem 0.75rem;
   font-size: 0.7rem;
   font-weight: 700;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--rb-accent-strong);
+  color: #2a58c8;
 }
 
 .rb-btn {
   border-radius: 0.7rem;
   border: 1px solid var(--rb-border-strong);
-  background: linear-gradient(145deg, #aee072 0%, #8fc95b 100%);
-  color: #0a140d;
+  background: linear-gradient(145deg, #3778f3 0%, #2c62dc 100%);
+  color: #ffffff;
   padding: 0.58rem 1rem;
   font-size: 0.82rem;
   font-weight: 800;
@@ -140,14 +140,14 @@ h4,
 .rb-btn:hover {
   transform: translateY(-1px);
   filter: brightness(1.03);
-  box-shadow: 0 10px 24px rgba(140, 195, 89, 0.28);
+  box-shadow: 0 10px 24px rgba(50, 97, 195, 0.28);
 }
 
 .rb-btn-secondary {
   border-radius: 0.7rem;
   border: 1px solid var(--rb-border);
-  background: rgba(12, 21, 14, 0.84);
-  color: var(--rb-text);
+  background: rgba(255, 255, 255, 0.8);
+  color: #1f3d67;
   padding: 0.58rem 1rem;
   font-size: 0.82rem;
   font-weight: 700;
@@ -163,9 +163,9 @@ h4,
 
 .rb-btn-danger {
   border-radius: 0.7rem;
-  border: 1px solid rgba(255, 122, 129, 0.45);
-  background: rgba(255, 122, 129, 0.13);
-  color: #ffc8cb;
+  border: 1px solid rgba(212, 88, 112, 0.45);
+  background: rgba(212, 88, 112, 0.1);
+  color: #a1374b;
   padding: 0.5rem 0.9rem;
   font-size: 0.76rem;
   font-weight: 700;
@@ -178,8 +178,8 @@ h4,
 .rb-textarea {
   width: 100%;
   border-radius: 0.7rem;
-  border: 1px solid rgba(174, 224, 114, 0.25);
-  background: rgba(8, 16, 10, 0.72);
+  border: 1px solid rgba(47, 111, 237, 0.24);
+  background: rgba(255, 255, 255, 0.92);
   color: var(--rb-text);
   padding: 0.58rem 0.75rem;
   font-size: 0.88rem;
@@ -189,14 +189,14 @@ h4,
 
 .rb-input::placeholder,
 .rb-textarea::placeholder {
-  color: rgba(154, 177, 148, 0.85);
+  color: rgba(93, 111, 143, 0.8);
 }
 
 .rb-input:focus,
 .rb-select:focus,
 .rb-textarea:focus {
   border-color: var(--rb-border-strong);
-  box-shadow: 0 0 0 3px rgba(174, 224, 114, 0.12);
+  box-shadow: 0 0 0 3px rgba(47, 111, 237, 0.12);
 }
 
 .rb-label {
@@ -213,21 +213,21 @@ h4,
   display: inline-flex;
   align-items: center;
   border-radius: 999px;
-  border: 1px solid rgba(174, 224, 114, 0.26);
-  background: rgba(174, 224, 114, 0.08);
+  border: 1px solid rgba(47, 111, 237, 0.25);
+  background: rgba(47, 111, 237, 0.07);
   padding: 0.22rem 0.56rem;
   font-size: 0.68rem;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--rb-accent-strong);
+  color: #2d5fcf;
 }
 
 .rb-table-wrap {
   overflow-x: auto;
   border-radius: 1rem;
-  border: 1px solid rgba(174, 224, 114, 0.18);
-  background: rgba(10, 18, 13, 0.88);
+  border: 1px solid rgba(47, 111, 237, 0.14);
+  background: rgba(255, 255, 255, 0.84);
 }
 
 .rb-table {
@@ -236,8 +236,8 @@ h4,
 }
 
 .rb-table thead tr {
-  border-bottom: 1px solid rgba(174, 224, 114, 0.2);
-  background: rgba(27, 42, 28, 0.45);
+  border-bottom: 1px solid rgba(47, 111, 237, 0.16);
+  background: rgba(244, 248, 255, 0.9);
   text-align: left;
 }
 
@@ -246,11 +246,11 @@ h4,
   font-size: 0.67rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #b7c9a5;
+  color: #5d738f;
 }
 
 .rb-table td {
-  border-top: 1px solid rgba(174, 224, 114, 0.1);
+  border-top: 1px solid rgba(47, 111, 237, 0.1);
   padding: 0.8rem 0.85rem;
   color: var(--rb-text);
   font-size: 0.82rem;
@@ -258,19 +258,19 @@ h4,
 
 .rb-alert {
   border-radius: 0.75rem;
-  border: 1px solid rgba(255, 122, 129, 0.36);
-  background: rgba(255, 122, 129, 0.11);
+  border: 1px solid rgba(212, 88, 112, 0.34);
+  background: rgba(212, 88, 112, 0.09);
   padding: 0.55rem 0.75rem;
-  color: #ffcad0;
+  color: #9f3247;
   font-size: 0.82rem;
 }
 
 .rb-alert-success {
   border-radius: 0.75rem;
-  border: 1px solid rgba(174, 224, 114, 0.38);
-  background: rgba(174, 224, 114, 0.12);
+  border: 1px solid rgba(47, 111, 237, 0.3);
+  background: rgba(47, 111, 237, 0.1);
   padding: 0.55rem 0.75rem;
-  color: #daf4b4;
+  color: #2f5fcf;
   font-size: 0.82rem;
 }
 
@@ -347,11 +347,11 @@ h4,
 .rb-hero-radar {
   position: relative;
   overflow: hidden;
-  border: 1px solid rgba(174, 224, 114, 0.26);
+  border: 1px solid rgba(47, 111, 237, 0.2);
   border-radius: 1rem;
   background:
-    radial-gradient(circle at 80% 16%, rgba(174, 224, 114, 0.16) 0%, transparent 42%),
-    linear-gradient(155deg, rgba(18, 32, 22, 0.92) 0%, rgba(8, 16, 11, 0.9) 100%);
+    radial-gradient(circle at 80% 16%, rgba(47, 111, 237, 0.16) 0%, transparent 42%),
+    linear-gradient(155deg, rgba(255, 255, 255, 0.92) 0%, rgba(244, 248, 255, 0.95) 100%);
 }
 
 .rb-hero-radar::before {
@@ -361,8 +361,8 @@ h4,
   width: 170px;
   height: 170px;
   border-radius: 999px;
-  border: 1px solid rgba(174, 224, 114, 0.2);
-  box-shadow: 0 0 0 18px rgba(174, 224, 114, 0.05);
+  border: 1px solid rgba(47, 111, 237, 0.18);
+  box-shadow: 0 0 0 18px rgba(47, 111, 237, 0.05);
 }
 
 .rb-hero-radar::after {
@@ -373,7 +373,7 @@ h4,
   width: 190px;
   height: 190px;
   border-radius: 999px;
-  border: 1px solid rgba(174, 224, 114, 0.26);
+  border: 1px solid rgba(47, 111, 237, 0.22);
   animation: rb-ring 5.5s ease-out infinite;
 }
 
@@ -383,9 +383,9 @@ h4,
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgba(174, 224, 114, 0.05) 42%,
-    rgba(174, 224, 114, 0.16) 50%,
-    rgba(174, 224, 114, 0.05) 58%,
+    rgba(47, 111, 237, 0.05) 42%,
+    rgba(47, 111, 237, 0.14) 50%,
+    rgba(47, 111, 237, 0.05) 58%,
     transparent 100%
   );
   mix-blend-mode: screen;

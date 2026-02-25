@@ -30,8 +30,8 @@ export default async function AdminNewProductPage({
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
-        <h2 className="rb-title text-3xl text-[#edf5dd]">Create product</h2>
-        <Link href="/admin/products" className="text-sm font-semibold uppercase tracking-[0.12em] text-[#b2c7aa] hover:text-[#e7f6d2]">
+        <h2 className="rb-title text-3xl text-[var(--rb-text)]">Create product</h2>
+        <Link href="/admin/products" className="text-sm font-semibold uppercase tracking-[0.12em] text-[var(--rb-accent-strong)] hover:text-[var(--rb-accent-strong)]">
           Back to products
         </Link>
       </div>
@@ -166,9 +166,9 @@ export default async function AdminNewProductPage({
             name="imageUrl"
             type="url"
             className="rb-input"
-            placeholder="https://cdn.reaperbotany.com/products/night-bloom.jpg"
+            placeholder="https://cdn.example.com/products/aurora-keyboard.jpg"
           />
-          <p className="mt-1 text-xs text-[#8ea88b]">
+          <p className="mt-1 text-xs text-[var(--rb-muted)]">
             You can also upload an image file below. Uploaded file takes precedence.
           </p>
         </div>
@@ -186,7 +186,7 @@ export default async function AdminNewProductPage({
           />
         </div>
 
-        <label className="inline-flex items-center gap-2 text-sm font-medium text-[#b8cdb0]">
+        <label className="inline-flex items-center gap-2 text-sm font-medium text-[var(--rb-muted)]">
           <input type="checkbox" name="isPublished" className="size-4" />
           Publish product immediately
         </label>
@@ -200,3 +200,4 @@ export default async function AdminNewProductPage({
     </div>
   );
 }
+

@@ -33,7 +33,7 @@ export default async function CartPage({ searchParams }: CartPageProps) {
 
   return (
     <div className="space-y-6">
-      <h1 className="rb-title text-4xl text-[#edf5dd]">Your Stash</h1>
+      <h1 className="rb-title text-4xl">Your Cart</h1>
 
       {errorMessage ? (
         <p className="rb-alert">
@@ -43,7 +43,7 @@ export default async function CartPage({ searchParams }: CartPageProps) {
 
       {cartItems.length === 0 ? (
         <div className="rb-panel p-8 text-center">
-          <p className="text-[#a5bc9f]">Your cart is empty.</p>
+          <p className="text-[var(--rb-muted)]">Your cart is empty.</p>
           <Link href="/products" className="rb-btn mt-4 inline-block">
             Browse products
           </Link>
@@ -55,9 +55,9 @@ export default async function CartPage({ searchParams }: CartPageProps) {
               <article key={item.id} className="rb-panel p-4">
                 <div className="flex flex-wrap items-start justify-between gap-4">
                   <div className="flex-1">
-                    <p className="text-xl font-semibold text-[#edf5dd]">{item.product.name}</p>
-                    <p className="mt-1 text-sm text-[#9ab194]">{item.product.sku}</p>
-                    <p className="mt-2 text-sm font-medium text-[#daf4b4]">
+                    <p className="text-xl font-semibold text-[var(--rb-text)]">{item.product.name}</p>
+                    <p className="mt-1 text-sm text-[var(--rb-muted)]">{item.product.sku}</p>
+                    <p className="mt-2 text-sm font-medium text-[var(--rb-accent-strong)]">
                       {formatPrice(item.product.priceCents)}
                     </p>
                   </div>
@@ -91,12 +91,12 @@ export default async function CartPage({ searchParams }: CartPageProps) {
           </section>
 
           <aside className="rb-panel h-fit p-5">
-            <h2 className="rb-title text-2xl text-[#edf5dd]">Summary</h2>
-            <div className="mt-4 flex items-center justify-between text-sm text-[#adc1a6]">
+            <h2 className="rb-title text-2xl text-[var(--rb-text)]">Summary</h2>
+            <div className="mt-4 flex items-center justify-between text-sm text-[var(--rb-muted)]">
               <span>Subtotal</span>
-              <span className="font-semibold text-[#daf4b4]">{formatPrice(subtotal)}</span>
+              <span className="font-semibold text-[var(--rb-accent-strong)]">{formatPrice(subtotal)}</span>
             </div>
-            <p className="mt-3 text-xs text-[#8ea88b]">
+            <p className="mt-3 text-xs text-[var(--rb-muted)]">
               Taxes and shipping are collected during checkout.
             </p>
             <Link href="/checkout" className="rb-btn mt-5 inline-flex w-full items-center justify-center">
@@ -108,3 +108,4 @@ export default async function CartPage({ searchParams }: CartPageProps) {
     </div>
   );
 }
+

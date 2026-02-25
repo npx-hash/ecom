@@ -38,8 +38,8 @@ export default async function AdminEditProductPage({
   return (
     <div className="space-y-4">
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <h2 className="rb-title text-3xl text-[#edf5dd]">Edit product</h2>
-        <Link href="/admin/products" className="text-sm font-semibold uppercase tracking-[0.12em] text-[#b2c7aa] hover:text-[#e7f6d2]">
+        <h2 className="rb-title text-3xl text-[var(--rb-text)]">Edit product</h2>
+        <Link href="/admin/products" className="text-sm font-semibold uppercase tracking-[0.12em] text-[var(--rb-accent-strong)] hover:text-[var(--rb-accent-strong)]">
           Back to products
         </Link>
       </div>
@@ -57,11 +57,11 @@ export default async function AdminEditProductPage({
         <input type="hidden" name="productId" value={product.id} />
         <input type="hidden" name="existingImageUrl" value={product.imageUrl ?? ""} />
 
-        <div className="rb-panel-soft p-3 text-sm text-[#a7bc9f]">
+        <div className="rb-panel-soft p-3 text-sm text-[var(--rb-muted)]">
           Created {formatDateTime(product.createdAt)} | Last updated {formatDateTime(product.updatedAt)}
           <br />
-          Current price: <span className="text-[#daf4b4]">{formatPrice(product.priceCents)}</span> | SKU:{" "}
-          <span className="font-mono text-[#d5e7c7]">{product.sku}</span>
+          Current price: <span className="text-[var(--rb-accent-strong)]">{formatPrice(product.priceCents)}</span> | SKU:{" "}
+          <span className="font-mono text-[var(--rb-text)]">{product.sku}</span>
         </div>
 
         <div className="grid gap-4 sm:grid-cols-2">
@@ -197,7 +197,7 @@ export default async function AdminEditProductPage({
             type="url"
             defaultValue={product.imageUrl ?? ""}
             className="rb-input"
-            placeholder="https://cdn.reaperbotany.com/products/night-bloom.jpg"
+            placeholder="https://cdn.example.com/products/aurora-keyboard.jpg"
           />
         </div>
 
@@ -214,7 +214,7 @@ export default async function AdminEditProductPage({
           />
         </div>
 
-        <label className="inline-flex items-center gap-2 text-sm font-medium text-[#b8cdb0]">
+        <label className="inline-flex items-center gap-2 text-sm font-medium text-[var(--rb-muted)]">
           <input
             type="checkbox"
             name="isPublished"
@@ -233,3 +233,4 @@ export default async function AdminEditProductPage({
     </div>
   );
 }
+

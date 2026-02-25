@@ -42,7 +42,7 @@ export default async function AdminOrdersPage({
 
   return (
     <div className="space-y-4">
-      <h2 className="rb-title text-3xl text-[#edf5dd]">Orders</h2>
+      <h2 className="rb-title text-3xl text-[var(--rb-text)]">Orders</h2>
 
       {errorMessage ? (
         <p className="rb-alert">
@@ -51,7 +51,7 @@ export default async function AdminOrdersPage({
       ) : null}
 
       {orders.length === 0 ? (
-        <p className="rb-panel p-6 text-[#a5bc9f]">
+        <p className="rb-panel p-6 text-[var(--rb-muted)]">
           No orders yet.
         </p>
       ) : (
@@ -60,14 +60,14 @@ export default async function AdminOrdersPage({
             <article key={order.id} className="rb-panel p-5">
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <div>
-                  <p className="font-mono text-xs text-[#8ea88b]">{order.id}</p>
-                  <p className="mt-1 text-sm text-[#c2d3bc]">
+                  <p className="font-mono text-xs text-[var(--rb-muted)]">{order.id}</p>
+                  <p className="mt-1 text-sm text-[var(--rb-muted)]">
                     {order.user.name} ({order.user.email})
                   </p>
-                  <p className="text-xs text-[#8ea88b]">{formatDateTime(order.createdAt)}</p>
+                  <p className="text-xs text-[var(--rb-muted)]">{formatDateTime(order.createdAt)}</p>
                 </div>
                 <div className="text-right">
-                  <p className="text-sm font-semibold text-[#daf4b4]">
+                  <p className="text-sm font-semibold text-[var(--rb-accent-strong)]">
                     {formatPrice(order.totalCents)}
                   </p>
                   <form action={updateOrderStatusAction} className="mt-2 flex items-center gap-2">
@@ -91,8 +91,8 @@ export default async function AdminOrdersPage({
               </div>
 
               <div className="mt-4 grid gap-4 md:grid-cols-2">
-                <div className="rb-panel-soft p-3 text-xs text-[#bed0b7]">
-                  <p className="font-semibold text-[#e5f2d4]">Shipping</p>
+                <div className="rb-panel-soft p-3 text-xs text-[var(--rb-muted)]">
+                  <p className="font-semibold text-[var(--rb-text)]">Shipping</p>
                   <p>{order.shippingName}</p>
                   <p>{order.shippingEmail}</p>
                   {order.shippingPhone ? <p>{order.shippingPhone}</p> : null}
@@ -103,15 +103,15 @@ export default async function AdminOrdersPage({
                   </p>
                   <p>{order.shippingCountry}</p>
                 </div>
-                <div className="rb-panel-soft p-3 text-xs text-[#bed0b7]">
-                  <p className="font-semibold text-[#e5f2d4]">Items</p>
+                <div className="rb-panel-soft p-3 text-xs text-[var(--rb-muted)]">
+                  <p className="font-semibold text-[var(--rb-text)]">Items</p>
                   <ul className="mt-2 space-y-1">
                     {order.items.map((item) => (
                       <li key={item.id} className="flex justify-between gap-2">
                         <span>
                           {item.productName} x {item.quantity}
                         </span>
-                        <span className="font-semibold text-[#daf4b4]">
+                        <span className="font-semibold text-[var(--rb-accent-strong)]">
                           {formatPrice(item.quantity * item.unitPriceCents)}
                         </span>
                       </li>
@@ -126,3 +126,4 @@ export default async function AdminOrdersPage({
     </div>
   );
 }
+

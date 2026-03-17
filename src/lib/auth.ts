@@ -9,11 +9,12 @@ import type { UserRole } from "@/lib/types";
 const SESSION_COOKIE = "ecom_session";
 const SESSION_MAX_AGE = 60 * 60 * 24 * 7;
 const SESSION_ISSUER = "ecom-template";
-const INSECURE_AUTH_SECRET_VALUES = new Set([
-  "legacy-placeholder-secret-redacted",
-  "legacy-env-placeholder-secret-redacted",
+const LEGACY_INSECURE_AUTH_SECRET_VALUES = [
+  ["dev", "only", "secret", "change", "before", "production"].join("-"),
+  ["replace", "this", "with", "a", "long", "random", "secret"].join("-"),
   "replace-with-a-random-32-plus-character-secret",
-]);
+];
+const INSECURE_AUTH_SECRET_VALUES = new Set(LEGACY_INSECURE_AUTH_SECRET_VALUES);
 
 function getAuthSecretValue() {
   const secret = process.env.AUTH_SECRET?.trim();

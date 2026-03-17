@@ -2,6 +2,8 @@ import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcryptjs";
 
 const prisma = new PrismaClient();
+const adminEmail = process.env.SEED_ADMIN_EMAIL?.trim().toLowerCase();
+const adminPassword = process.env.SEED_ADMIN_PASSWORD?.trim();
 
 const categorySeeds = [
   {
@@ -139,7 +141,6 @@ const productSeeds = [
 ];
 
 async function main() {
-  const adminPasswordHash = await bcrypt.hash("redacted-admin-password", 10);
   const retainedCategorySlugs = categorySeeds.map((category) => category.slug);
   const retainedProductSlugs = productSeeds.map((product) => product.slug);
 
@@ -189,20 +190,36 @@ async function main() {
     },
   });
 
-  await prisma.user.upsert({
-    where: { email: "admin@example.invalid" },
-    update: {
-      name: "Store Admin",
-      passwordHash: adminPasswordHash,
-      role: "ADMIN",
-    },
-    create: {
-      name: "Store Admin",
-      email: "admin@example.invalid",
-      passwordHash: adminPasswordHash,
-      role: "ADMIN",
-    },
-  });
+  if (adminEmail || adminPassword) {
+    if (!adminEmail || !adminPassword) {
+      throw new Error(
+        "Provide both SEED_ADMIN_EMAIL and SEED_ADMIN_PASSWORD to seed an admin user.",
+      );
+    }
+
+    if (adminPassword.length < 12) {
+      throw new Error(
+        "SEED_ADMIN_PASSWORD must be at least 12 characters long.",
+      );
+    }
+
+    const adminPasswordHash = await bcrypt.hash(adminPassword, 12);
+
+    await prisma.user.upsert({
+      where: { email: adminEmail },
+      update: {
+        name: "Store Admin",
+        passwordHash: adminPasswordHash,
+        role: "ADMIN",
+      },
+      create: {
+        name: "Store Admin",
+        email: adminEmail,
+        passwordHash: adminPasswordHash,
+        role: "ADMIN",
+      },
+    });
+  }
 
   for (const category of categorySeeds) {
     await prisma.category.upsert({
@@ -249,7 +266,13 @@ async function main() {
     });
   }
 
-  console.log("Seed complete. Admin login: admin@example.invalid / redacted-admin-password");
+  if (adminEmail) {
+    console.log(`Seed complete. Admin account ensured for ${adminEmail}.`);
+  } else {
+    console.log(
+      "Seed complete. No admin account was created. Set SEED_ADMIN_EMAIL and SEED_ADMIN_PASSWORD if you want one.",
+    );
+  }
 }
 
 main()

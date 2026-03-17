@@ -2,6 +2,11 @@ import { randomUUID } from "node:crypto";
 import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 
+import {
+  MAX_PRODUCT_IMAGE_UPLOAD_BYTES,
+  MAX_PRODUCT_IMAGE_UPLOAD_MB,
+} from "@/lib/product-image";
+
 const allowedMimeTypes = new Set([
   "image/jpeg",
   "image/png",
@@ -32,6 +37,12 @@ function extensionFromMimeType(mimeType: string) {
 export async function saveUploadedImage(file: File) {
   if (!allowedMimeTypes.has(file.type)) {
     throw new Error("Unsupported image format.");
+  }
+
+  if (file.size > MAX_PRODUCT_IMAGE_UPLOAD_BYTES) {
+    throw new Error(
+      `Image upload must be ${MAX_PRODUCT_IMAGE_UPLOAD_MB} MB or smaller.`,
+    );
   }
 
   const buffer = Buffer.from(await file.arrayBuffer());

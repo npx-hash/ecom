@@ -29,7 +29,11 @@ A full-stack ecommerce starter for in-house QA and feature testing, built with:
 npm install
 ```
 
-2. Create and seed database:
+2. Copy `.env.example` to `.env`, then set `AUTH_SECRET` to a long random value.
+
+3. Optional: set `SEED_ADMIN_EMAIL` and `SEED_ADMIN_PASSWORD` in `.env` if you want the seed script to create an admin account.
+
+4. Create and seed database:
 
 ```bash
 npm run db:generate
@@ -37,20 +41,13 @@ npm run db:migrate
 npm run db:seed
 ```
 
-3. Run development server:
+5. Run development server:
 
 ```bash
 npm run dev
 ```
 
 Open `http://localhost:3000`.
-
-## Default Admin Account
-
-- Email: `admin@example.invalid`
-- Password: `redacted-admin-password`
-
-Change this after first login.
 
 ## Scripts
 
@@ -61,12 +58,14 @@ Change this after first login.
 - `npm run db:generate` - generate Prisma client
 - `npm run db:migrate` - apply migration SQL to SQLite
 - `npm run db:apply` - apply migration SQL directly
-- `npm run db:seed` - seed admin + generic template categories/products
+- `npm run db:seed` - seed optional admin + generic template categories/products
 - `npm run db:studio` - Prisma Studio
 
 ## Project Notes
 
 - Database file: `prisma/dev.db` (gitignored)
-- Session auth uses signed HTTP-only cookies (`AUTH_SECRET` in `.env`)
+- Session auth uses signed HTTP-only cookies and refuses placeholder secrets in production (`AUTH_SECRET` in `.env`)
+- Seed data only creates an admin account when `SEED_ADMIN_EMAIL` and `SEED_ADMIN_PASSWORD` are provided
+- Product image uploads are limited to 5 MB and only allow safe HTTP/HTTPS or local `/uploads` paths
 - Uploads are stored on local disk (`public/uploads`) for local/self-hosted setups.
   For cloud/serverless deployments, replace with S3/R2/GCS object storage.

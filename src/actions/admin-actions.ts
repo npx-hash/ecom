@@ -1,10 +1,12 @@
 "use server";
 
+import { Prisma } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
 import { requireAdmin } from "@/lib/auth";
 import { saveUploadedImage } from "@/lib/image";
+import { normalizeProductImageUrl } from "@/lib/product-image";
 import { prisma } from "@/lib/prisma";
 import {
   categorySchema,
@@ -28,10 +30,60 @@ function normalizeOptionalString(value: FormDataEntryValue | null) {
   return normalized;
 }
 
+function isKnownPrismaError(error: unknown) {
+  return error instanceof Prisma.PrismaClientKnownRequestError;
+}
+
+function resolveCategoryMutationError(error: unknown) {
+  if (isKnownPrismaError(error)) {
+    if (error.code === "P2002") {
+      return "A category with that name or slug already exists.";
+    }
+
+    if (error.code === "P2025") {
+      return "Category not found.";
+    }
+  }
+
+  return "Unable to save category right now.";
+}
+
+function resolveProductMutationError(error: unknown) {
+  if (error instanceof Error) {
+    if (
+      error.message === "Unsupported image format." ||
+      error.message.startsWith("Image upload must be") ||
+      error.message.startsWith("Image URL must use")
+    ) {
+      return error.message;
+    }
+  }
+
+  if (isKnownPrismaError(error)) {
+    if (error.code === "P2002") {
+      return "A product with that slug or SKU already exists.";
+    }
+
+    if (error.code === "P2003") {
+      return "Selected category is invalid.";
+    }
+
+    if (error.code === "P2025") {
+      return "Product not found.";
+    }
+  }
+
+  return "Unable to save product right now.";
+}
+
 async function resolveImageUrl(formData: FormData) {
   const uploaded = formData.get("image");
-  const rawImageUrl = normalizeOptionalString(formData.get("imageUrl"));
-  const existingImageUrl = normalizeOptionalString(formData.get("existingImageUrl"));
+  const rawImageUrl = normalizeProductImageUrl(
+    formData.get("imageUrl")?.toString(),
+  );
+  const existingImageUrl = normalizeProductImageUrl(
+    formData.get("existingImageUrl")?.toString(),
+  );
 
   if (uploaded instanceof File && uploaded.size > 0) {
     return saveUploadedImage(uploaded);
@@ -70,13 +122,21 @@ export async function createCategoryAction(formData: FormData) {
     );
   }
 
-  await prisma.category.create({
-    data: {
-      name: parsed.data.name,
-      slug,
-      description: parsed.data.description,
-    },
-  });
+  try {
+    await prisma.category.create({
+      data: {
+        name: parsed.data.name,
+        slug,
+        description: parsed.data.description,
+      },
+    });
+  } catch (error) {
+    redirect(
+      `/admin/categories?error=${encodeURIComponent(
+        resolveCategoryMutationError(error),
+      )}`,
+    );
+  }
 
   revalidatePath("/admin/categories");
   revalidatePath("/products");
@@ -114,14 +174,22 @@ export async function updateCategoryAction(formData: FormData) {
     );
   }
 
-  await prisma.category.update({
-    where: { id: categoryId },
-    data: {
-      name: parsed.data.name,
-      slug,
-      description: parsed.data.description,
-    },
-  });
+  try {
+    await prisma.category.update({
+      where: { id: categoryId },
+      data: {
+        name: parsed.data.name,
+        slug,
+        description: parsed.data.description,
+      },
+    });
+  } catch (error) {
+    redirect(
+      `/admin/categories?error=${encodeURIComponent(
+        resolveCategoryMutationError(error),
+      )}`,
+    );
+  }
 
   revalidatePath("/admin/categories");
   revalidatePath("/products");
@@ -187,25 +255,36 @@ export async function createProductAction(formData: FormData) {
     );
   }
 
-  const imageUrl = await resolveImageUrl(formData);
+  let createdProduct: {
+    id: string;
+  };
+  try {
+    const imageUrl = await resolveImageUrl(formData);
 
-  const createdProduct = await prisma.product.create({
-    data: {
-      name: parsed.data.name,
-      slug,
-      description: parsed.data.description,
-      imageUrl,
-      priceCents: toCents(parsed.data.price),
-      compareAtPriceCents: parsed.data.compareAtPrice
-        ? toCents(parsed.data.compareAtPrice)
-        : undefined,
-      sku: parsed.data.sku,
-      inventory: parsed.data.inventory,
-      categoryId: parsed.data.categoryId || null,
-      isPublished: parsed.data.isPublished,
-    },
-    select: { id: true },
-  });
+    createdProduct = await prisma.product.create({
+      data: {
+        name: parsed.data.name,
+        slug,
+        description: parsed.data.description,
+        imageUrl,
+        priceCents: toCents(parsed.data.price),
+        compareAtPriceCents: parsed.data.compareAtPrice
+          ? toCents(parsed.data.compareAtPrice)
+          : null,
+        sku: parsed.data.sku,
+        inventory: parsed.data.inventory,
+        categoryId: parsed.data.categoryId || null,
+        isPublished: parsed.data.isPublished,
+      },
+      select: { id: true },
+    });
+  } catch (error) {
+    redirect(
+      `/admin/products/new?error=${encodeURIComponent(
+        resolveProductMutationError(error),
+      )}`,
+    );
+  }
 
   revalidatePath("/");
   revalidatePath("/products");
@@ -257,25 +336,33 @@ export async function updateProductAction(formData: FormData) {
     );
   }
 
-  const imageUrl = await resolveImageUrl(formData);
+  try {
+    const imageUrl = await resolveImageUrl(formData);
 
-  await prisma.product.update({
-    where: { id: productId },
-    data: {
-      name: parsed.data.name,
-      slug,
-      description: parsed.data.description,
-      imageUrl,
-      priceCents: toCents(parsed.data.price),
-      compareAtPriceCents: parsed.data.compareAtPrice
-        ? toCents(parsed.data.compareAtPrice)
-        : undefined,
-      sku: parsed.data.sku,
-      inventory: parsed.data.inventory,
-      categoryId: parsed.data.categoryId || null,
-      isPublished: parsed.data.isPublished,
-    },
-  });
+    await prisma.product.update({
+      where: { id: productId },
+      data: {
+        name: parsed.data.name,
+        slug,
+        description: parsed.data.description,
+        imageUrl,
+        priceCents: toCents(parsed.data.price),
+        compareAtPriceCents: parsed.data.compareAtPrice
+          ? toCents(parsed.data.compareAtPrice)
+          : null,
+        sku: parsed.data.sku,
+        inventory: parsed.data.inventory,
+        categoryId: parsed.data.categoryId || null,
+        isPublished: parsed.data.isPublished,
+      },
+    });
+  } catch (error) {
+    redirect(
+      `/admin/products/${productId}?error=${encodeURIComponent(
+        resolveProductMutationError(error),
+      )}`,
+    );
+  }
 
   revalidatePath("/");
   revalidatePath("/products");

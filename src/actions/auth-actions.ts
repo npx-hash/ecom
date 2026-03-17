@@ -1,5 +1,6 @@
 "use server";
 
+import { Prisma } from "@prisma/client";
 import bcrypt from "bcryptjs";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
@@ -18,6 +19,13 @@ function safeInternalPath(path: string | null | undefined, fallback: string) {
   }
 
   return path;
+}
+
+function isUniqueConstraintError(error: unknown) {
+  return (
+    error instanceof Prisma.PrismaClientKnownRequestError &&
+    error.code === "P2002"
+  );
 }
 
 export async function registerAction(formData: FormData) {
@@ -55,20 +63,37 @@ export async function registerAction(formData: FormData) {
   }
 
   const passwordHash = await bcrypt.hash(parsed.data.password, 10);
-  const user = await prisma.user.create({
-    data: {
-      name: parsed.data.name,
-      email: parsed.data.email.toLowerCase(),
-      passwordHash,
-      role: "USER",
-    },
-    select: {
-      id: true,
-      name: true,
-      email: true,
-      role: true,
-    },
-  });
+
+  let user: {
+    id: string;
+    name: string;
+    email: string;
+    role: string;
+  };
+  try {
+    user = await prisma.user.create({
+      data: {
+        name: parsed.data.name,
+        email: parsed.data.email.toLowerCase(),
+        passwordHash,
+        role: "USER",
+      },
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        role: true,
+      },
+    });
+  } catch (error) {
+    if (isUniqueConstraintError(error)) {
+      redirect(
+        `/register?error=${encodeURIComponent("An account with this email exists.")}`,
+      );
+    }
+
+    throw error;
+  }
 
   await setSession({
     uid: user.id,

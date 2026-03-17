@@ -1,5 +1,6 @@
 import { z } from "zod";
 
+import { isSafeProductImageUrl } from "@/lib/product-image";
 import { ORDER_STATUS_VALUES, ROLE_VALUES } from "@/lib/types";
 
 export const registerSchema = z.object({
@@ -23,7 +24,15 @@ export const productSchema = z.object({
   name: z.string().trim().min(2).max(160),
   slug: z.string().trim().min(2).max(160).optional(),
   description: z.string().trim().min(10).max(4000),
-  imageUrl: z.string().trim().url().optional().or(z.literal("")),
+  imageUrl: z
+    .string()
+    .trim()
+    .max(500)
+    .refine(isSafeProductImageUrl, {
+      message: "Image URL must use HTTP/HTTPS or point to /uploads.",
+    })
+    .optional()
+    .or(z.literal("")),
   price: z.coerce.number().positive(),
   compareAtPrice: z.coerce.number().positive().optional(),
   sku: z.string().trim().min(2).max(100),

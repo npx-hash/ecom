@@ -8,11 +8,35 @@ import type { UserRole } from "@/lib/types";
 
 const SESSION_COOKIE = "ecom_session";
 const SESSION_MAX_AGE = 60 * 60 * 24 * 7;
-const DEFAULT_AUTH_SECRET = "legacy-placeholder-secret-redacted";
+const SESSION_ISSUER = "ecom-template";
+const INSECURE_AUTH_SECRET_VALUES = new Set([
+  "legacy-placeholder-secret-redacted",
+  "legacy-env-placeholder-secret-redacted",
+  "replace-with-a-random-32-plus-character-secret",
+]);
 
-const authSecret = new TextEncoder().encode(
-  process.env.AUTH_SECRET ?? DEFAULT_AUTH_SECRET,
-);
+function getAuthSecretValue() {
+  const secret = process.env.AUTH_SECRET?.trim();
+
+  if (!secret) {
+    throw new Error(
+      "AUTH_SECRET is required. Add it to your environment before starting the app.",
+    );
+  }
+
+  if (
+    process.env.NODE_ENV === "production" &&
+    (secret.length < 32 || INSECURE_AUTH_SECRET_VALUES.has(secret))
+  ) {
+    throw new Error(
+      "AUTH_SECRET must be a non-placeholder value at least 32 characters long in production.",
+    );
+  }
+
+  return secret;
+}
+
+const authSecret = new TextEncoder().encode(getAuthSecretValue());
 const validRoles = new Set<UserRole>(["USER", "ADMIN"]);
 
 type SessionPayload = {
@@ -25,6 +49,7 @@ type SessionPayload = {
 async function signSession(payload: SessionPayload) {
   return new SignJWT(payload)
     .setProtectedHeader({ alg: "HS256" })
+    .setIssuer(SESSION_ISSUER)
     .setIssuedAt()
     .setExpirationTime(`${SESSION_MAX_AGE}s`)
     .sign(authSecret);
@@ -40,6 +65,7 @@ export async function setSession(payload: SessionPayload) {
     sameSite: "lax",
     maxAge: SESSION_MAX_AGE,
     path: "/",
+    priority: "high",
   });
 }
 
@@ -57,7 +83,10 @@ export async function getSession() {
   }
 
   try {
-    const verified = await jwtVerify(token, authSecret);
+    const verified = await jwtVerify(token, authSecret, {
+      algorithms: ["HS256"],
+      issuer: SESSION_ISSUER,
+    });
     const payload = verified.payload as Partial<SessionPayload>;
 
     if (
